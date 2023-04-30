@@ -3,6 +3,7 @@ import styles from './AuthorEditForm.module.scss';
 import Author from '../../../../core/types/author';
 import Input from '../../../ui/input/Input';
 import Button from '../../../ui/button/Button';
+import { ImageLoader } from '../../../ui/imageLoader/ImageLoader';
 
 interface AuthorEditFormProps {
   author: Author;
