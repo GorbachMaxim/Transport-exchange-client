@@ -1,0 +1,30 @@
+@import '../../../styles/colors.scss';
+@import '../../../styles/typography.scss';
+
+.textAreaContainer {
+  @extend .mainText;
+}
+
+.textArea {
+  @extend .mainText;
+  display: block;
+  width: 100%;
+  height: 120px;
+  line-height: 20px;
+  background-color: var(--secondary-color);
+  color: var(--text-color-contrast);
+  border: 1px solid var(--text-color-300);
+  border-radius: 4px;
+  resize: none;
+  outline: none;
+  padding: 11px;
+
+  &:focus {
+    border: 1px solid var(--text-color-contrast);
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+}
