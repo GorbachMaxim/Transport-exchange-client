@@ -14,7 +14,11 @@ const AuthorEditPage = () => {
   const navigate = useNavigate();
 
   const updateAuthor = async (author: Author) => {
-    await authorStore.updateAuthor(author);
+    const response = await authorStore.updateAuthor(author);
+
+    if (response !== null) {
+      navigate(`${AUTHORS_ROUTE}/${author.id}`);
+    }
   };
 
   const fetchAuthor = async () => {
@@ -22,7 +26,7 @@ const AuthorEditPage = () => {
     if (receivedAuthor) {
       setAuthor(receivedAuthor);
     } else {
-      navigate(`${AUTHORS_ROUTE}`);
+      navigate(AUTHORS_ROUTE);
     }
   };
 

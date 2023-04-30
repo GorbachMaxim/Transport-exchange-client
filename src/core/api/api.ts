@@ -105,11 +105,9 @@ class Api implements IApi {
         Authorization: `Bearer ${token}`,
       },
       data: {
-        author,
+        ...author,
       },
     });
-
-    console.log(response);
 
     return response;
   }
