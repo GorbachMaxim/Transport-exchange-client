@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import User, { AuthData } from '../core/types/user';
 import api from '../core/api/api';
 import { setCookie } from '../core/utils/cookie';
+import Author from '../core/types/author';
 
 class UserStore {
   private user: User | null = null;

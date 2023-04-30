@@ -82,6 +82,22 @@ class Api implements IApi {
       },
     });
   }
+
+  async updateAuthorById(author: Author): Promise<Author | null> {
+    const token = getCookie('token');
+    const response = await this.fetch<Author>('put', AUTHORS_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        author,
+      },
+    });
+
+    console.log(response);
+
+    return response;
+  }
 }
 
 export default new Api();

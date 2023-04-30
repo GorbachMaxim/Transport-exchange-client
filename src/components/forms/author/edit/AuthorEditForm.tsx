@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './AuthorEditForm.module.scss';
 import Author from '../../../../core/types/author';
 import Input from '../../../ui/input/Input';
@@ -8,39 +8,52 @@ import { TextArea } from '../../../ui/textArea/TextArea';
 
 interface AuthorEditFormProps {
   author: Author;
-  onSubmit: () => void;
+  onSubmit: (author: Author) => void;
 }
 
 const AuthorEditForm = (props: AuthorEditFormProps) => {
+  const [image, setImage] = useState<string>(props.author.image);
+  const [name, setName] = useState<string>(props.author.name);
+  const [surname, setSurname] = useState<string>(props.author.surname);
+  const [biography, setBiography] = useState<string>(props.author.biography);
+
+  const preventDefaultSubmit = (event: React.FormEvent<HTMLFormElement>) =>
+    event.preventDefault();
+
+  const onSubmit = async () => {
+    const author: Author = {
+      id: props.author.id,
+      image,
+      name,
+      surname,
+      biography,
+    };
+    await props.onSubmit(author);
+  };
+
   return (
-    <form className={styles.form}>
+    <form className={styles.form} onSubmit={preventDefaultSubmit}>
       <div className={styles.image}>
         <img src={props.author.image} alt="author" />
       </div>
       <Input
-        value={props.author.name}
+        value={name}
         type={'text'}
-        onChange={() => {}}
+        onChange={setName}
         className={styles.input}
       />
       <Input
-        value={props.author.surname}
+        value={surname}
         type={'text'}
-        onChange={() => {}}
-        className={styles.input}
-      />
-      <Input
-        value={props.author.biography}
-        type={'text'}
-        onChange={() => {}}
+        onChange={setSurname}
         className={styles.input}
       />
       <TextArea
-        value={props.author.biography}
-        onChange={() => {}}
+        value={biography}
+        onChange={setBiography}
         className={styles.input}
       />
-      <Button onClick={() => {}}>Update</Button>
+      <Button onClick={onSubmit}>Update</Button>
     </form>
   );
 };

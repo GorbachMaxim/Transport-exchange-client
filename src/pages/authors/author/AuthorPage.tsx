@@ -2,17 +2,18 @@ import React, { useEffect, useState } from 'react';
 import styles from './AuthorPage.module.scss';
 import { useNavigate, useParams } from 'react-router-dom';
 import Author from '../../../core/types/author';
-import api from '../../../core/api/api';
 import { AUTHORS_ROUTE } from '../../../core/constants/routes';
 import { observer } from 'mobx-react';
+import { useStore } from '../../../context/storeContext';
 
 const AuthorPage = observer(() => {
   const [author, setAuthor] = useState<Author>(null!);
+  const authorStore = useStore('AuthorStore');
   const { authorId } = useParams();
   const navigate = useNavigate();
 
   const fetchAuthor = async () => {
-    const receivedAuthor = await api.fetchAuthorById(Number(authorId));
+    const receivedAuthor = await authorStore.fetchAuthorById(Number(authorId));
     if (receivedAuthor) {
       setAuthor(receivedAuthor);
     } else {
@@ -21,7 +22,6 @@ const AuthorPage = observer(() => {
   };
 
   useEffect(() => {
-    console.log('asdasdasdas');
     fetchAuthor();
   }, []);
 

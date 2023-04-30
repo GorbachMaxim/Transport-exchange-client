@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styles from './AuthorsListPage.module.scss';
-import api from '../../../core/api/api';
 import AuthorsList from '../../../components/lists/authors/AuthorsList';
-import Author from '../../../core/types/author';
+import { useStore } from '../../../context/storeContext';
+import { observer } from 'mobx-react';
 
-const AuthorsListPage = () => {
-  const [authors, setAuthors] = useState<Author[]>([]);
+const AuthorsListPage = observer(() => {
+  const authorStore = useStore('AuthorStore');
 
   const fetchAuthors = async (): Promise<void> => {
-    const authors = await api.fetchAuthors();
-    if (authors !== null) {
-      setAuthors(authors);
-    }
+    await authorStore.fetchAuthors();
   };
 
   useEffect(() => {
@@ -21,13 +18,13 @@ const AuthorsListPage = () => {
   return (
     <main className={`${styles.authorsPage} container page`}>
       <h2 className={`pageTitle`}>Authors</h2>
-      {authors.length > 0 ? (
-        <AuthorsList authors={authors} />
+      {authorStore.getAuthors().length > 0 ? (
+        <AuthorsList authors={authorStore.getAuthors()} />
       ) : (
         <span className={styles.noAuthors}>Authors not found</span>
       )}
     </main>
   );
-};
+});
 
 export default AuthorsListPage;
