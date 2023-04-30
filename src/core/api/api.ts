@@ -75,7 +75,12 @@ class Api implements IApi {
   }
 
   async fetchAuthorById(id: number): Promise<Author | null> {
-    return await this.fetch('get', `${AUTHORS_URL}/${id}`);
+    const token = getCookie('token');
+    return await this.fetch('get', `${AUTHORS_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 }
 
