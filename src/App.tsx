@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/home/HomePage';
 import BooksPage from './pages/books/BooksPage';
@@ -15,8 +15,19 @@ import Genres from './pages/account/menu/genres/Genres';
 import Users from './pages/account/menu/users/Users';
 import AuthorPage from './pages/authors/author/AuthorPage';
 import AuthorEditPage from './pages/authors/edit/AuthorEditPage';
+import { useStore } from './context/storeContext';
 
 function App() {
+  const userStore = useStore('UserStore');
+
+  const fetchUser = async () => {
+    await userStore.fetchUser();
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
   return (
     <BrowserRouter>
       <Header />

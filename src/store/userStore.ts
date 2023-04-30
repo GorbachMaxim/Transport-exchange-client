@@ -11,12 +11,18 @@ class UserStore {
     makeAutoObservable(this);
   }
 
+  async fetchUser(): Promise<void> {
+    const user = await api.fetchUser();
+    this.user = user;
+  }
+
   async singIn(user: AuthData): Promise<void> {
     const response = await api.signIn(user);
 
     if (response !== null) {
       this.user = response;
       setCookie('token', response.token);
+      localStorage.setItem('user', JSON.stringify(this.user));
     }
   }
 

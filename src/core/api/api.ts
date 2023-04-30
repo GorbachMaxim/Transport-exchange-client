@@ -1,4 +1,5 @@
 import {
+  ACCOUNT_URL,
   AUTHORS_URL,
   BASE_URL,
   SIGNIN_URL,
@@ -47,6 +48,20 @@ class Api implements IApi {
       }
       return null;
     }
+  }
+
+  async fetchUser(): Promise<User | null> {
+    const token = getCookie('token');
+
+    if (token) {
+      return await this.fetch('get', ACCOUNT_URL, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+    }
+
+    return null;
   }
 
   async signUp(user: AuthData): Promise<UserApiResponse | null> {

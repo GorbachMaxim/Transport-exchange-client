@@ -10,7 +10,6 @@ import { useStore } from '../../../context/storeContext';
 const AuthorEditPage = () => {
   const [author, setAuthor] = useState<Author>(null!);
   const authorStore = useStore('AuthorStore');
-  const userStore = useStore('UserStore');
   const { authorId } = useParams();
   const navigate = useNavigate();
 
