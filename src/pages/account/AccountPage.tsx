@@ -6,7 +6,7 @@ import { ReactComponent as BookIcon } from '../../assets/icons/book-icon.svg';
 import { ReactComponent as AuthorIcon } from '../../assets/icons/person-circle-icon.svg';
 import { ReactComponent as GenreIcon } from '../../assets/icons/bookmark-icon.svg';
 import { ReactComponent as UsersIcon } from '../../assets/icons/people-icon.svg';
-import { ReactComponent as LogoutIcon } from '../../assets/icons/logout.svg';
+import { ReactComponent as LogoutIcon } from '../../assets/icons/logout-icon.svg';
 import ActiveLink from '../../core/types/activeLink';
 import { useStore } from '../../context/storeContext';
 import { HOME_ROUTE } from '../../core/constants/routes';
@@ -26,7 +26,7 @@ const AccountPage = () => {
   };
 
   return (
-    <div className={`${styles.account} container page`}>
+    <main className={`${styles.account} container page`}>
       <ul className={styles.menu}>
         <li>
           <NavLink to={'/account/overview'} className={setActiveLink}>
@@ -71,7 +71,7 @@ const AccountPage = () => {
       <div className={styles.content}>
         <Outlet />
       </div>
-    </div>
+    </main>
   );
 };
 

@@ -1,0 +1,66 @@
+@import '../../../../styles/typography.scss';
+
+.authors {
+  @extend .mainText;
+}
+
+.headers {
+  display: flex;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  padding: 5px;
+}
+
+.authorItem {
+  display: flex;
+  align-items: center;
+  margin: 0 0 5px 0;
+  padding: 5px;
+  &:hover {
+    background-color: var(--hover-neutral-color-1);
+    color: var(--secondary-color);
+  }
+}
+
+.indexHeader,
+.authorIndex {
+  display: block;
+  width: 100px;
+}
+
+.nameHeader,
+.authorName {
+  display: block;
+  width: 500px;
+}
+
+.idHeader,
+.authorId {
+  display: block;
+  width: 100px;
+}
+
+.editBtn {
+  margin: 0 30px 0 20px;
+  cursor: pointer;
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--neutral-color-1);
+  }
+  &:hover svg {
+    fill: var(--secondary-color);
+  }
+}
+
+.deleteBtn {
+  cursor: pointer;
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--neutral-color-2);
+  }
+  &:hover svg {
+    fill: var(--hover-neutral-color-2);
+  }
+}
