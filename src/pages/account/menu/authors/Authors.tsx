@@ -15,8 +15,12 @@ const Authors = observer(() => {
     await authorStore.fetchAuthors();
   };
 
-  const toEditPage = (authorId: number) => {
+  const toEditPage = (authorId: number): void => {
     navigate(`${AUTHORS_ROUTE}/edit/${authorId}`);
+  };
+
+  const deleteAuthor = async (authorId: number): Promise<void> => {
+    await authorStore.deleteAuthor(authorId);
   };
 
   useEffect(() => {
@@ -46,7 +50,10 @@ const Authors = observer(() => {
               >
                 <EditIcon />
               </button>
-              <button className={styles.deleteBtn}>
+              <button
+                className={styles.deleteBtn}
+                onClick={() => deleteAuthor(author.id)}
+              >
                 <DeleteIcon />
               </button>
             </li>

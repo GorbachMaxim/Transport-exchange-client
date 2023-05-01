@@ -98,7 +98,7 @@ class Api implements IApi {
     });
   }
 
-  async updateAuthorById(author: Author): Promise<Author | null> {
+  async updateAuthor(author: Author): Promise<Author | null> {
     const token = getCookie('token');
     const response = await this.fetch<Author>('put', AUTHORS_URL, {
       headers: {
@@ -111,6 +111,17 @@ class Api implements IApi {
 
     return response;
   }
+
+  async deleteAuthorById(id: number): Promise<void | null> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${AUTHORS_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 }
 
-export default new Api();
+const api = new Api();
+
+export default api;
