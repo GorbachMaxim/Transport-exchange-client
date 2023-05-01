@@ -34,6 +34,10 @@ class UserStore {
     }
   }
 
+  async logout(): Promise<void> {
+    this.user = null;
+  }
+
   getUser() {
     return this.user;
   }
