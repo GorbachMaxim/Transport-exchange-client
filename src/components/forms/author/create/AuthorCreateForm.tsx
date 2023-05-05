@@ -5,14 +5,17 @@ import Input from '../../../ui/input/Input';
 import { TextArea } from '../../../ui/textArea/TextArea';
 import { ImageLoader } from '../../../ui/imageLoader/ImageLoader';
 import Button from '../../../ui/button/Button';
+import Form from '../../../form/Form';
 
 interface AuthorCreateFormProps {
   onSubmit: () => void;
 }
 
 const AuthorCreateForm = (props: AuthorCreateFormProps) => {
+  const onSubmit = () => {};
+
   return (
-    <form className={`form`} onSubmit={preventDefaultSubmit}>
+    <Form>
       <ImageLoader onLoad={() => {}} />
       <Input type="text" placeholder="Name" onChange={() => {}} />
       <Input type="text" placeholder="Surname" onChange={() => {}} />
@@ -20,7 +23,7 @@ const AuthorCreateForm = (props: AuthorCreateFormProps) => {
       <Button type="primary" onClick={() => {}}>
         Create
       </Button>
-    </form>
+    </Form>
   );
 };
 

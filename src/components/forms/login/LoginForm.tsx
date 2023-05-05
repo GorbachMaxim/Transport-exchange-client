@@ -4,6 +4,7 @@ import Input from '../../ui/input/Input';
 import Button from '../../ui/button/Button';
 import preventDefaultSubmit from '../../../core/utils/preventDefaultSubmit';
 import { AuthData } from '../../../core/types/user';
+import Form from '../../form/Form';
 
 interface LoginFormProps {
   onSubmit: (user: AuthData) => void;
@@ -24,7 +25,7 @@ const LoginForm = (props: LoginFormProps) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={preventDefaultSubmit}>
+    <Form>
       <Input
         onChange={setUsername}
         type="text"
@@ -46,7 +47,7 @@ const LoginForm = (props: LoginFormProps) => {
       <Button type="primary" onClick={onSubmit}>
         Sign In
       </Button>
-    </form>
+    </Form>
   );
 };
 

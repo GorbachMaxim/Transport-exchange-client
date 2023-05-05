@@ -4,8 +4,8 @@ import AuthorCreateForm from '../../../components/forms/author/create/AuthorCrea
 
 const AuthorCreatePage = () => {
   return (
-    <main className={`${styles.authorEditPage} container page`}>
-      <h2 className={`pageTitle`}>Edit Author</h2>
+    <main className={`${styles.authorCreatePage} container page`}>
+      <h2 className={`pageTitle`}>Create Author</h2>
       <AuthorCreateForm onSubmit={() => {}} />
     </main>
   );

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styles from '../../../pages/registration/RegistrationPage.module.scss';
 import Input from '../../ui/input/Input';
 import Button from '../../ui/button/Button';
-import preventDefaultSubmit from '../../../core/utils/preventDefaultSubmit';
 import { AuthData } from '../../../core/types/user';
+import Form from '../../form/Form';
 
 interface RegistrationFormProps {
   onSubmit: (user: AuthData) => void;
@@ -24,7 +24,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={preventDefaultSubmit}>
+    <Form>
       <Input
         onChange={setUsername}
         type="text"
@@ -52,7 +52,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
       <Button type="primary" onClick={onSubmit}>
         Create Account
       </Button>
-    </form>
+    </Form>
   );
 };
 

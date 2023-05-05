@@ -5,6 +5,7 @@ import Input from '../../../ui/input/Input';
 import Button from '../../../ui/button/Button';
 import preventDefaultSubmit from '../../../../core/utils/preventDefaultSubmit';
 import { TextArea } from '../../../ui/textArea/TextArea';
+import Form from '../../../form/Form';
 
 interface AuthorEditFormProps {
   author: Author;
@@ -29,7 +30,7 @@ const AuthorEditForm = (props: AuthorEditFormProps) => {
   };
 
   return (
-    <form className={styles.form} onSubmit={preventDefaultSubmit}>
+    <Form>
       <div className={styles.image}>
         <img src={props.author.image} alt="author" />
       </div>
@@ -53,7 +54,7 @@ const AuthorEditForm = (props: AuthorEditFormProps) => {
       <Button type="primary" onClick={onSubmit}>
         Update
       </Button>
-    </form>
+    </Form>
   );
 };
 
