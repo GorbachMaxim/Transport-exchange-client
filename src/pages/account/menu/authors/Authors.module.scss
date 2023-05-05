@@ -24,20 +24,23 @@
 
 .indexHeader,
 .authorIndex {
-  display: block;
+  display: flex;
   width: 100px;
+  align-items: center;
 }
 
 .nameHeader,
 .authorName {
-  display: block;
+  display: flex;
   width: 500px;
+  align-items: center;
 }
 
 .idHeader,
 .authorId {
-  display: block;
+  display: flex;
   width: 100px;
+  align-items: center;
 }
 
 .editBtn {
@@ -62,5 +65,45 @@
   }
   &:hover svg {
     fill: var(--hover-neutral-color-2);
+  }
+}
+
+.arrowBtn {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0 0 0 10px;
+  cursor: pointer;
+}
+
+.arrow {
+  rotate: 90deg;
+}
+
+.rotateUp {
+  scale: -1;
+  animation: rotateUp 0.2s linear;
+}
+
+.rotateDown {
+  scale: 1;
+  animation: rotateDown 0.2s linear;
+}
+
+@keyframes rotateUp {
+  0% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(-1);
+  }
+}
+
+@keyframes rotateDown {
+  0% {
+    transform: scaleY(-1);
+  }
+  100% {
+    transform: scaleY(1);
   }
 }

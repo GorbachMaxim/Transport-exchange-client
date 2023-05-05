@@ -33,6 +33,18 @@ class AuthorStore {
     }
   }
 
+  sortByField(field: keyof Author): void {
+    this.authors.sort((author1, author2) => {
+      if (author1[field] < author2[field]) {
+        return -1;
+      }
+      if (author1[field] > author2[field]) {
+        return 1;
+      }
+      return 0;
+    });
+  }
+
   getAuthors() {
     return this.authors;
   }
