@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './LoginForm.module.scss';
 import Input from '../../ui/input/Input';
 import Button from '../../ui/button/Button';
+import preventDefaultSubmit from '../../../core/utils/preventDefaultSubmit';
 import { AuthData } from '../../../core/types/user';
 
 interface LoginFormProps {
@@ -12,9 +13,6 @@ const LoginForm = (props: LoginFormProps) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
-  const preventDefaultSubmit = (event: React.FormEvent<HTMLFormElement>) =>
-    event.preventDefault();
 
   const onSubmit = () => {
     const user: AuthData = {

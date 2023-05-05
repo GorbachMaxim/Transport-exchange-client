@@ -35,10 +35,10 @@ const AuthorEditPage = () => {
   }, []);
 
   return (
-    <div className={`${styles.authorEditPage} container page`}>
+    <main className={`${styles.authorEditPage} container page`}>
       <h2 className={`pageTitle`}>Edit Author</h2>
       {author && <AuthorEditForm author={author} onSubmit={updateAuthor} />}
-    </div>
+    </main>
   );
 };
 

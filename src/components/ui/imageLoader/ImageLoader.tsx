@@ -3,7 +3,7 @@ import { LoaderForm } from './loaderForm/LoaderForm';
 import { ImagePreviewer } from './imagePreviewer/ImagePreviewer';
 
 interface ImageLoaderProps {
-  onLoadCallback: (image: string | null) => void;
+  onLoad: (image: string | null) => void;
 }
 
 export const ImageLoader = (props: ImageLoaderProps): JSX.Element => {
@@ -13,14 +13,13 @@ export const ImageLoader = (props: ImageLoaderProps): JSX.Element => {
     setFile(newFile);
 
     const reader: FileReader = new FileReader();
-    reader.onloadend = () =>
-      props.onLoadCallback(reader.result?.toString() || null);
+    reader.onloadend = () => props.onLoad(reader.result?.toString() || null);
     reader.readAsDataURL(newFile);
   };
 
   const onCancelLoad = (): void => {
     setFile(null);
-    props.onLoadCallback(null);
+    props.onLoad(null);
   };
 
   return file !== null ? (

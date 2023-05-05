@@ -5,6 +5,7 @@ export interface TextAreaProps {
   onChange: (newValue: string) => void;
   value?: string;
   className?: string;
+  placeholder?: string;
 }
 
 export const TextArea = (props: TextAreaProps): JSX.Element => {
@@ -19,6 +20,7 @@ export const TextArea = (props: TextAreaProps): JSX.Element => {
       value={props.value}
       className={`${styles.textArea} ${props.className || ''}`}
       onChange={textAreaChangeHandler}
+      placeholder={props.placeholder}
     />
   );
 };

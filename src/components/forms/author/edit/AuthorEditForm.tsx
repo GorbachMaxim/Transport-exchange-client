@@ -3,7 +3,7 @@ import styles from './AuthorEditForm.module.scss';
 import Author from '../../../../core/types/author';
 import Input from '../../../ui/input/Input';
 import Button from '../../../ui/button/Button';
-import { ImageLoader } from '../../../ui/imageLoader/ImageLoader';
+import preventDefaultSubmit from '../../../../core/utils/preventDefaultSubmit';
 import { TextArea } from '../../../ui/textArea/TextArea';
 
 interface AuthorEditFormProps {
@@ -16,9 +16,6 @@ const AuthorEditForm = (props: AuthorEditFormProps) => {
   const [name, setName] = useState<string>(props.author.name);
   const [surname, setSurname] = useState<string>(props.author.surname);
   const [biography, setBiography] = useState<string>(props.author.biography);
-
-  const preventDefaultSubmit = (event: React.FormEvent<HTMLFormElement>) =>
-    event.preventDefault();
 
   const onSubmit = async () => {
     const author: Author = {
