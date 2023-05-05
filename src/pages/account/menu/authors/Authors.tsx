@@ -8,6 +8,7 @@ import { ReactComponent as EditIcon } from '../../../../assets/icons/edit-icon.s
 import { ReactComponent as DeleteIcon } from '../../../../assets/icons/delete-icon.svg';
 import { ReactComponent as ArrowIcon } from '../../../../assets/icons/arrow-icon.svg';
 import Author from '../../../../core/types/author';
+import Button from '../../../../components/ui/button/Button';
 
 const Authors = observer(() => {
   const [isSorted, setIsSorted] = useState<boolean>(true);
@@ -17,7 +18,7 @@ const Authors = observer(() => {
   const arrowAnimation = () =>
     `${styles.arrow} ${isSorted ? styles.rotateUp : styles.rotateDown}`;
 
-  const sortByField = (field: keyof Author) => {
+  const sortByField = (field: keyof Author): void => {
     authorStore.sortByField(field);
     setIsSorted(!isSorted);
   };
@@ -28,6 +29,10 @@ const Authors = observer(() => {
 
   const toEditPage = (authorId: number): void => {
     navigate(`${AUTHORS_ROUTE}/edit/${authorId}`);
+  };
+
+  const toCreatePage = (): void => {
+    navigate(`${AUTHORS_ROUTE}/create`);
   };
 
   const deleteAuthor = async (authorId: number): Promise<void> => {
@@ -63,6 +68,15 @@ const Authors = observer(() => {
             >
               <ArrowIcon className={arrowAnimation()} />
             </button>
+          </div>
+          <div>
+            <Button
+              onClick={toCreatePage}
+              type={'secondary'}
+              className={styles.createBtn}
+            >
+              <span className={styles.plusBtn}>+</span>Create
+            </Button>
           </div>
         </li>
         {authorStore.getAuthors().length > 0 ? (

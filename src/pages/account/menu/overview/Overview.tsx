@@ -40,7 +40,9 @@ const Overview = () => {
           className={styles.input}
           placeholder={'Password'}
         />
-        <Button onClick={() => {}}>Update</Button>
+        <Button type="primary" onClick={() => {}}>
+          Update
+        </Button>
       </form>
     </section>
   );

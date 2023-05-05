@@ -45,7 +45,9 @@ const LoginForm = (props: LoginFormProps) => {
         className={styles.input}
         placeholder={'Password'}
       />
-      <Button onClick={onSubmit}>Sign In</Button>
+      <Button type="primary" onClick={onSubmit}>
+        Sign In
+      </Button>
     </form>
   );
 };

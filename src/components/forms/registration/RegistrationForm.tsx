@@ -51,7 +51,9 @@ const RegistrationForm = (props: RegistrationFormProps) => {
         className={styles.input}
         placeholder={'Confirm password'}
       />
-      <Button onClick={onSubmit}>Create Account</Button>
+      <Button type="primary" onClick={onSubmit}>
+        Create Account
+      </Button>
     </form>
   );
 };

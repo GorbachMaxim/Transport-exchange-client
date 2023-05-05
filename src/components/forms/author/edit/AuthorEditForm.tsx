@@ -53,7 +53,9 @@ const AuthorEditForm = (props: AuthorEditFormProps) => {
         onChange={setBiography}
         className={styles.input}
       />
-      <Button onClick={onSubmit}>Update</Button>
+      <Button type="primary" onClick={onSubmit}>
+        Update
+      </Button>
     </form>
   );
 };
