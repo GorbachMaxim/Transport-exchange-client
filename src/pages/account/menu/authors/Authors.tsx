@@ -53,21 +53,21 @@ const Authors = observer(() => {
           </div>
           <div className={styles.nameHeader}>
             <span>name</span>
-            <button
-              className={styles.arrowBtn}
-              onClick={() => sortByField('name')}
-            >
-              <ArrowIcon className={arrowAnimation()} />
-            </button>
+            {/*<button*/}
+            {/*  className={styles.arrowBtn}*/}
+            {/*  onClick={() => sortByField('name')}*/}
+            {/*>*/}
+            {/*  <ArrowIcon className={arrowAnimation()} />*/}
+            {/*</button>*/}
           </div>
           <div className={styles.idHeader}>
             <span>ID</span>
-            <button
-              className={styles.arrowBtn}
-              onClick={() => sortByField('id')}
-            >
-              <ArrowIcon className={arrowAnimation()} />
-            </button>
+            {/*<button*/}
+            {/*  className={styles.arrowBtn}*/}
+            {/*  onClick={() => sortByField('id')}*/}
+            {/*>*/}
+            {/*  <ArrowIcon className={arrowAnimation()} />*/}
+            {/*</button>*/}
           </div>
           <div>
             <Button
