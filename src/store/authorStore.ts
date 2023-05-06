@@ -33,6 +33,14 @@ class AuthorStore {
     }
   }
 
+  async createAuthor(author: Author): Promise<void> {
+    const response = api.createAuthor(author);
+
+    if (response !== null) {
+      this.authors = [...this.authors, author];
+    }
+  }
+
   sortByField(field: keyof Author): void {
     this.authors.sort((author1, author2) => {
       if (author1[field] < author2[field]) {

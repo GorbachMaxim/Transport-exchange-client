@@ -6,4 +6,7 @@ interface Author {
   surname: string;
 }
 
+type AuthorCreateData = Omit<Author, 'id'>;
+
 export default Author;
+export type { AuthorCreateData };
