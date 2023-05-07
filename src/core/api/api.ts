@@ -10,7 +10,7 @@ import User, { AuthData, UserApiResponse } from '../types/user';
 import axios from 'axios';
 import { getCookie } from '../utils/cookie';
 import Author from '../types/author';
-import Book from '../types/book';
+import Book, { BookCreateData } from '../types/book';
 
 type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
@@ -124,7 +124,6 @@ class Api implements IApi {
   }
 
   async createAuthor(author: Author): Promise<void> {
-    console.log(author);
     const token = getCookie('token');
     await this.fetch('post', `${AUTHORS_URL}`, {
       headers: {
@@ -141,6 +140,18 @@ class Api implements IApi {
     return await this.fetch('get', BOOKS_URL, {
       headers: {
         Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async createBook(book: BookCreateData): Promise<Book | null> {
+    const token = getCookie('token');
+    return await this.fetch('post', BOOKS_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...book,
       },
     });
   }
