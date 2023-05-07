@@ -3,12 +3,16 @@ import styles from './AuthorCreatePage.module.scss';
 import AuthorCreateForm from '../../../components/forms/author/create/AuthorCreateForm';
 import Author, { AuthorCreateData } from '../../../core/types/author';
 import { useStore } from '../../../context/storeContext';
+import { useNavigate } from 'react-router-dom';
+import { AUTHORS_ROUTE } from '../../../core/constants/routes';
 
 const AuthorCreatePage = () => {
   const authorStore = useStore('AuthorStore');
+  const navigate = useNavigate();
 
   const onSubmit = async (author: AuthorCreateData) => {
     await authorStore.createAuthor(author as Author);
+    navigate(`${AUTHORS_ROUTE}`);
   };
 
   return (

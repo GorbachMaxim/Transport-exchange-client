@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './AuthorCreateFrom.module.scss';
+import styles from './AuthorCreateForm.module.scss';
 import Input from '../../../ui/input/Input';
 import { TextArea } from '../../../ui/textArea/TextArea';
 import { ImageLoader } from '../../../ui/imageLoader/ImageLoader';

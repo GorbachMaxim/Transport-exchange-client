@@ -122,6 +122,7 @@ class Api implements IApi {
   }
 
   async createAuthor(author: Author): Promise<void> {
+    console.log(author);
     const token = getCookie('token');
     await this.fetch('post', `${AUTHORS_URL}`, {
       headers: {

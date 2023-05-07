@@ -6,6 +6,7 @@ import Button from '../../../ui/button/Button';
 import preventDefaultSubmit from '../../../../core/utils/preventDefaultSubmit';
 import { TextArea } from '../../../ui/textArea/TextArea';
 import Form from '../../../form/Form';
+import ImageEditor from '../../../imageEditor/ImageEditor';
 
 interface AuthorEditFormProps {
   author: Author;
@@ -32,7 +33,11 @@ const AuthorEditForm = (props: AuthorEditFormProps) => {
   return (
     <Form>
       <div className={styles.image}>
-        <img src={props.author.image} alt="author" />
+        <img src={image} alt="author" />
+        <ImageEditor
+          onLoad={(newImage) => setImage(newImage || '')}
+          className={styles.imageLoader}
+        />
       </div>
       <Input
         value={name}
