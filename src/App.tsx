@@ -20,6 +20,7 @@ import AuthorCreatePage from './pages/authors/create/AuthorCreatePage';
 import BookCreatePage from './pages/books/create/BookCreatePage';
 import GenresListPage from './pages/genres/genresList/GenresListPage';
 import GenreCreatePage from './pages/genres/create/GenreCreatePage';
+import { LOGIN_ROUTE } from './core/constants/routes';
 
 function App() {
   const userStore = useStore('UserStore');
@@ -36,7 +37,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path={'/'} element={<HomePage />} />
+        <Route path={'/'} element={<Navigate to={`${LOGIN_ROUTE}`} />} />
         <Route path={'books'}>
           <Route index element={<BooksListPage />} />
           <Route path={'create'} element={<BookCreatePage />} />

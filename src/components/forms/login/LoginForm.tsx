@@ -32,12 +32,12 @@ const LoginForm = (props: LoginFormProps) => {
         className={styles.input}
         placeholder={'Username'}
       />
-      <Input
-        onChange={setEmail}
-        type="email"
-        className={styles.input}
-        placeholder={'Email'}
-      />
+      {/*<Input*/}
+      {/*  onChange={setEmail}*/}
+      {/*  type="email"*/}
+      {/*  className={styles.input}*/}
+      {/*  placeholder={'Email'}*/}
+      {/*/>*/}
       <Input
         onChange={setPassword}
         type="password"

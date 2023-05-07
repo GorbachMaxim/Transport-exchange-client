@@ -6,7 +6,9 @@
   margin: 15px 0 0 15px;
   background-color: var(--secondary-color);
   border-radius: 8px;
-  box-shadow: 0px 5px 10px var(--shadow-color);
+  border: 1px solid var(--text-color-100);
+  box-shadow: 0px 4px 10px var(--shadow-color);
+
   color: var(--text-color-contrast);
   transition: all 0.2s linear;
   &:hover {

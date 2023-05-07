@@ -21,7 +21,7 @@ const Header = observer(() => {
   return (
     <header className={`${styles.header} ${isHeaderShown ? '' : styles.hide}`}>
       <div className={`${styles.topPanel} container`}>
-        <NavLink to={'/home'} className={styles.logo}>
+        <NavLink to={'/books'} className={styles.logo}>
           <Logo />
         </NavLink>
         <div className={styles.searchBar}>
@@ -29,10 +29,18 @@ const Header = observer(() => {
           <SearchIcon className={styles.searchIcon} />
         </div>
         <div className={styles.menu}>
+          <NavLink to={'/cart'} className={styles.cart}>
+            <CartIcon className={styles.cartIcon} />
+            <span className={styles.cartCaption}>{'Need advice?'}</span>
+          </NavLink>
+          <NavLink to={'/wishlist'} className={styles.wishlist}>
+            <WishListIcon className={styles.wishlistIcon} />
+            <span className={styles.wishlistCaption}>Read books</span>
+          </NavLink>
           {userStore.getUser() ? (
             <NavLink to={'/account'} className={styles.account}>
               <AccountIcon className={styles.accountIcon} />
-              <span className={styles.accountCaption}>Account</span>
+              <span className={styles.accountCaption}>Menu</span>
             </NavLink>
           ) : (
             <NavLink to={'/login'} className={styles.account}>
@@ -40,23 +48,10 @@ const Header = observer(() => {
               <span className={styles.accountCaption}>Sign in</span>
             </NavLink>
           )}
-          <NavLink to={'/cart'} className={styles.cart}>
-            <CartIcon className={styles.cartIcon} />
-            <span className={styles.cartCaption}>Cart:(0$)</span>
-          </NavLink>
-          <NavLink to={'/wishlist'} className={styles.wishlist}>
-            <WishListIcon className={styles.wishlistIcon} />
-            <span className={styles.wishlistCaption}>Wishlist</span>
-          </NavLink>
         </div>
       </div>
       <nav className={styles.navbar}>
         <ul className={styles.navbarList}>
-          <li className={styles.navbarItem}>
-            <NavLink to={'/'} className={setActiveLink}>
-              Home
-            </NavLink>
-          </li>
           <li className={styles.navbarItem}>
             <NavLink to={'/books'} className={setActiveLink}>
               Books
@@ -70,11 +65,6 @@ const Header = observer(() => {
           <li className={styles.navbarItem}>
             <NavLink to={'/genres'} className={setActiveLink}>
               Genres
-            </NavLink>
-          </li>
-          <li className={styles.navbarItem}>
-            <NavLink to={'/contacts'} className={setActiveLink}>
-              Contact us
             </NavLink>
           </li>
         </ul>

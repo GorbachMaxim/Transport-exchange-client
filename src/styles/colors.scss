@@ -1,7 +1,8 @@
 :root {
   --white: #fff;
 
-  --black-100: #111111;
+  --black-100: rgba(0, 0, 0, 0.15);
+  --black-200: #111111;
 
   --grey-100: #f6f6f6;
   --grey-200: #e0e0e0;
@@ -32,10 +33,10 @@ html[color-theme='light'] {
   --text-color-400: var(--grey-400);
   --text-color-500: var(--grey-500);
   --text-color-600: var(--grey-600);
-  --text-color-contrast: var(--black-100);
+  --text-color-contrast: var(--black-200);
 
   --hover-neutral-color-1: var(--blue-100);
   --hover-neutral-color-2: var(--red-100);
 
-  --shadow-color: var(--grey-200);
+  --shadow-color: var(--black-100);
 }

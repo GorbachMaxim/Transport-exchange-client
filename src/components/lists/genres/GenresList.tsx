@@ -10,7 +10,7 @@ interface GenresListProps {
 
 const GenresList = (props: GenresListProps) => {
   return (
-    <div>
+    <div className={styles.list}>
       {props.genres.map((genre) => (
         <GenreCard genre={genre} key={genre.id} />
       ))}
