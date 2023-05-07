@@ -12,6 +12,7 @@ import axios from 'axios';
 import { getCookie } from '../utils/cookie';
 import Author from '../types/author';
 import Book, { BookCreateData } from '../types/book';
+import Genre, { GenreCreateData } from '../types/genre';
 
 type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
@@ -157,11 +158,23 @@ class Api implements IApi {
     });
   }
 
-  async fetchGenres(): Promise<Book[] | null> {
+  async fetchGenres(): Promise<Genre[] | null> {
     const token = getCookie('token');
     return await this.fetch('get', GENRES_URL, {
       headers: {
         Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async createGenre(genre: Genre): Promise<Genre | null> {
+    const token = getCookie('token');
+    return await this.fetch('post', GENRES_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...genre,
       },
     });
   }

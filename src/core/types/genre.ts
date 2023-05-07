@@ -5,4 +5,7 @@ interface Genre {
   description: string;
 }
 
+type GenreCreateData = Omit<Genre, 'id'>;
+
 export default Genre;
+export type { GenreCreateData };

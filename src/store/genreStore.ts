@@ -1,8 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import api from '../core/api/api';
-import Book, { BookCreateData } from '../core/types/book';
-import Author from '../core/types/author';
-import Genre from '../core/types/genre';
+import Genre, { GenreCreateData } from '../core/types/genre';
 
 class GenreStore {
   private genres: Genre[] = [];
@@ -19,14 +17,13 @@ class GenreStore {
     }
   }
 
-  // async createGenre(genre: BookCreateData): Promise<void> {
-  //   const response = await api.createBook(book);
-  //
-  //   if (response !== null) {
-  //     console.log(response);
-  //     this.books = [...this.books, response];
-  //   }
-  // }
+  async createGenre(genre: Genre): Promise<void> {
+    const response = await api.createGenre(genre);
+
+    if (response !== null) {
+      this.genres = [...this.genres, response];
+    }
+  }
 
   getGenres() {
     return this.genres;
