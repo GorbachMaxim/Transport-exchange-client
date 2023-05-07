@@ -3,3 +3,4 @@ export const SIGNUP_URL = '/api/auth/signup';
 export const SIGNIN_URL = '/api/auth/signin';
 export const AUTHORS_URL = '/api/author';
 export const ACCOUNT_URL = '/api/account';
+export const BOOKS_URL = '/api/book';

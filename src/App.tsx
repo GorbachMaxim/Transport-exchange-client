@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import HomePage from './pages/home/HomePage';
-import BooksPage from './pages/books/BooksPage';
+import BooksListPage from './pages/books/booksList/BooksListPage';
 import RegistrationPage from './pages/registration/RegistrationPage';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
@@ -34,7 +34,9 @@ function App() {
       <Header />
       <Routes>
         <Route path={'/'} element={<HomePage />} />
-        <Route path={'books'} element={<BooksPage />} />
+        <Route path={'books'}>
+          <Route index element={<BooksListPage />} />
+        </Route>
         <Route path={'authors'}>
           <Route index element={<AuthorsListPage />} />
           <Route path={':authorId'} element={<AuthorPage />} />

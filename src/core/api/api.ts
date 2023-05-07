@@ -2,6 +2,7 @@ import {
   ACCOUNT_URL,
   AUTHORS_URL,
   BASE_URL,
+  BOOKS_URL,
   SIGNIN_URL,
   SIGNUP_URL,
 } from '../constants/apiConstants';
@@ -9,6 +10,7 @@ import User, { AuthData, UserApiResponse } from '../types/user';
 import axios from 'axios';
 import { getCookie } from '../utils/cookie';
 import Author from '../types/author';
+import Book from '../types/book';
 
 type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
@@ -130,6 +132,15 @@ class Api implements IApi {
       },
       data: {
         ...author,
+      },
+    });
+  }
+
+  async fetchBooks(): Promise<Book[] | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', BOOKS_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
   }
