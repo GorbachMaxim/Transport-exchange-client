@@ -22,7 +22,6 @@ class BookStore {
     const response = await api.createBook(book);
 
     if (response !== null) {
-      console.log(response);
       this.books = [...this.books, response];
     }
   }

@@ -18,6 +18,7 @@ import AuthorEditPage from './pages/authors/edit/AuthorEditPage';
 import { useStore } from './context/storeContext';
 import AuthorCreatePage from './pages/authors/create/AuthorCreatePage';
 import BookCreatePage from './pages/books/create/BookCreatePage';
+import GenresListPage from './pages/genres/genresList/GenresListPage';
 
 function App() {
   const userStore = useStore('UserStore');
@@ -45,7 +46,9 @@ function App() {
           <Route path={'create'} element={<AuthorCreatePage />} />
           <Route path={'edit/:authorId'} element={<AuthorEditPage />} />
         </Route>
-        <Route path={'genres'} element={<HomePage />} />
+        <Route path={'genres'}>
+          <Route index element={<GenresListPage />} />
+        </Route>
         <Route path={'contacts'} element={<HomePage />} />
         <Route path={'registration'} element={<RegistrationPage />} />
         <Route path={'login'} element={<LoginPage />} />

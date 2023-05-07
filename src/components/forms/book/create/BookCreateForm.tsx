@@ -25,7 +25,7 @@ const BookCreateForm = (props: BookCreateFormProps) => {
     //   name,
     //   ISBN,
     //   author,
-    //   genre: {
+    //   genres: {
     //     id: 1,
     //     description: 'some text',
     //     image: '',

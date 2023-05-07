@@ -15,9 +15,9 @@ interface Book {
 
 type BookCreateData = Omit<Book, 'id' | 'reviews'>;
 
-// type BookCreateData = Omit<Book, 'author' | 'genre' | 'id' | 'reviews'> & {
+// type BookCreateData = Omit<Book, 'author' | 'genres' | 'id' | 'reviews'> & {
 //   author: number;
-//   genre: number;
+//   genres: number;
 // };
 
 export default Book;

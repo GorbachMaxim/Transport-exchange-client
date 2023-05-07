@@ -3,6 +3,7 @@ import {
   AUTHORS_URL,
   BASE_URL,
   BOOKS_URL,
+  GENRES_URL,
   SIGNIN_URL,
   SIGNUP_URL,
 } from '../constants/apiConstants';
@@ -152,6 +153,15 @@ class Api implements IApi {
       },
       data: {
         ...book,
+      },
+    });
+  }
+
+  async fetchGenres(): Promise<Book[] | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', GENRES_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
   }
