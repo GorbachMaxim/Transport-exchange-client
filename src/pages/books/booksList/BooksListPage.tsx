@@ -15,7 +15,7 @@ const BooksListPage: FC = observer(() => {
 
   return (
     <main className={`${styles.booksPage} container page`}>
-      <h2 className={`pageTitle`}>Authors</h2>
+      <h2 className={`pageTitle`}>Book</h2>
       <Loader promise={fetchBooks} loaderClassName={styles.loader}>
         <BooksList />
       </Loader>
