@@ -32,7 +32,7 @@
 .nameHeader,
 .authorName {
   display: flex;
-  width: 500px;
+  width: 320px;
   align-items: center;
 }
 
@@ -40,6 +40,13 @@
 .authorId {
   display: flex;
   width: 100px;
+  align-items: center;
+}
+
+.emailHeader,
+.authorEmail {
+  display: flex;
+  width: 260px;
   align-items: center;
 }
 

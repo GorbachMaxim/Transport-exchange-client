@@ -8,7 +8,7 @@ import {
   SIGNUP_URL,
   USERS_URL,
 } from '../constants/apiConstants';
-import User, { AuthData, UserApiResponse } from '../types/user';
+import User, { AuthData, UpdatePassword, UserApiResponse } from '../types/user';
 import axios from 'axios';
 import { getCookie } from '../utils/cookie';
 import Author from '../types/author';
@@ -99,6 +99,27 @@ class Api implements IApi {
     await this.fetch('delete', `${USERS_URL}/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchUserById(id: number): Promise<User | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', `${USERS_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async updatePassword(passwords: UpdatePassword): Promise<void> {
+    const token = getCookie('token');
+    await this.fetch('put', `${USERS_URL}/password/${passwords.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...passwords,
       },
     });
   }

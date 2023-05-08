@@ -29,6 +29,7 @@ import Confirmation from './components/confirmation/Confirmation';
 import GenreEditPage from './pages/genres/edit/GenreEditPage';
 import GenrePage from './pages/genres/genre/GenrePage';
 import BookPage from './pages/books/book/BookPage';
+import UserEditPage from './pages/user/edit/UserEditPage';
 
 function App() {
   const userStore = useStore('UserStore');
@@ -66,7 +67,9 @@ function App() {
             <Route path={'create'} element={<GenreCreatePage />} />
             <Route path={'edit/:genreId'} element={<GenreEditPage />} />
           </Route>
-          <Route path={'contacts'} element={<HomePage />} />
+          <Route path={'user'}>
+            <Route path={'edit/:userId'} element={<UserEditPage />} />
+          </Route>
           <Route path={'registration'} element={<RegistrationPage />} />
           <Route path={'login'} element={<LoginPage />} />
           <Route path={'account'} element={<AccountPage />}>

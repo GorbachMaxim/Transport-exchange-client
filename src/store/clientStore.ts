@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import User, { AuthData } from '../core/types/user';
+import User, { AuthData, UpdatePassword } from '../core/types/user';
 import api from '../core/api/api';
 import ConfirmationStore from './confirmationStore';
 
@@ -18,13 +18,13 @@ class UserStore {
     }
   }
 
-  // async fetchClientById(id: number): Promise<Author | null> {
-  //   return await api.fetchAuthorById(id);
-  // }
-  //
-  // async updateClient(author: Author): Promise<Author | null> {
-  //   return await api.updateAuthor(author);
-  // }
+  async fetchClientById(id: number): Promise<User | null> {
+    return await api.fetchUserById(id);
+  }
+
+  async updatePassword(passwords: UpdatePassword): Promise<void> {
+    await api.updatePassword(passwords);
+  }
 
   async deleteClientById(id: number): Promise<void> {
     const response = await api.deleteUserById(id);

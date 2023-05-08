@@ -1,6 +1,5 @@
 import Book from './book';
-
-type Roles = 'ROLE_ADMIN' | 'ROLE_USER';
+import Role from './roles';
 
 interface User {
   id: number;
@@ -8,11 +7,14 @@ interface User {
   email: string;
   // isVerified: boolean;
   // readBooks: Book[];
-  roles: Roles;
+  roles: Role[];
 }
 
 type AuthData = Pick<User, 'username' | 'email'> & { password: string };
 type UserApiResponse = User & { token: string };
+type UpdatePassword = Pick<User, 'id'> & {
+  password: string;
+};
 
 export default User;
-export type { AuthData, UserApiResponse };
+export type { AuthData, UserApiResponse, UpdatePassword };
