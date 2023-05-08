@@ -10,6 +10,22 @@ class AuthorStore {
     makeAutoObservable(this);
   }
 
+  private async deleteAuthorById(id: number): Promise<void> {
+    const response = await api.deleteAuthorById(id);
+
+    if (response !== null) {
+      this.authors = this.authors.filter((author) => author.id !== id);
+    }
+  }
+
+  deleteAuthor(author: Author): void {
+    this.confirmationStore.show(
+      'Delete this author?',
+      `${author.name} ${author.surname}`,
+      async () => await this.deleteAuthorById(author.id),
+    );
+  }
+
   async fetchAuthors(): Promise<void> {
     const fetchedAuthors = await api.fetchAuthors();
 
@@ -24,22 +40,6 @@ class AuthorStore {
 
   async updateAuthor(author: Author): Promise<Author | null> {
     return await api.updateAuthor(author);
-  }
-
-  async deleteAuthorById(id: number): Promise<void> {
-    const response = await api.deleteAuthorById(id);
-
-    if (response !== null) {
-      this.authors = this.authors.filter((author) => author.id !== id);
-    }
-  }
-
-  async deleteAuthor(author: Author): Promise<void | null> {
-    this.confirmationStore.show(
-      'Delete this author?',
-      `${author.name} ${author.surname}`,
-      async () => await this.deleteAuthorById(author.id),
-    );
   }
 
   async createAuthor(author: Author): Promise<void> {

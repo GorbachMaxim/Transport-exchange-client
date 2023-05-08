@@ -6,6 +6,7 @@ import {
   GENRES_URL,
   SIGNIN_URL,
   SIGNUP_URL,
+  USERS_URL,
 } from '../constants/apiConstants';
 import User, { AuthData, UserApiResponse } from '../types/user';
 import axios from 'axios';
@@ -80,6 +81,24 @@ class Api implements IApi {
     return await this.fetch('post', SIGNIN_URL, {
       data: {
         ...user,
+      },
+    });
+  }
+
+  async fetchUsers(): Promise<User[] | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', USERS_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async deleteUserById(id: number): Promise<void | null> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${USERS_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
   }

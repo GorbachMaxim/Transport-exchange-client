@@ -34,7 +34,7 @@ const Genres = observer(() => {
   }, []);
 
   return (
-    <section className={styles.authors}>
+    <section className={styles.genres}>
       <h2 className={`accountPageTitle`}>Genres</h2>
       <ul className={styles.authorsList}>
         <li className={styles.headers}>
