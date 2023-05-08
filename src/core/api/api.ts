@@ -187,6 +187,29 @@ class Api implements IApi {
       },
     });
   }
+
+  async fetchBookById(id: number): Promise<Book | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', `${BOOKS_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async updateBook(book: Book): Promise<Book | null> {
+    const token = getCookie('token');
+    const response = await this.fetch<Book>('put', BOOKS_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...book,
+      },
+    });
+
+    return response;
+  }
 }
 
 const api = new Api();

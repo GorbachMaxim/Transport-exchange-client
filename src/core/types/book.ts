@@ -5,7 +5,7 @@ import Genre from './genre';
 interface Book {
   id: number;
   name: string;
-  ISBN: string;
+  isbn: string;
   author: Author;
   genre: Genre;
   description: string;

@@ -18,6 +18,10 @@ class BookStore {
     }
   }
 
+  async fetchBookById(id: number): Promise<Book | null> {
+    return await api.fetchBookById(id);
+  }
+
   async createBook(book: BookCreateData): Promise<void> {
     const response = await api.createBook(book);
 
@@ -32,6 +36,9 @@ class BookStore {
     if (response !== null) {
       this.books = this.books.filter((book) => book.id !== id);
     }
+  }
+  async updateBook(book: Book): Promise<Book | null> {
+    return await api.updateBook(book);
   }
 
   getBooks() {

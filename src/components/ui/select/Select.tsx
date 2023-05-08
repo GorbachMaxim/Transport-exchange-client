@@ -7,12 +7,13 @@ interface SelectProps {
   options: Option[];
   onChange: (option: Option) => void;
   caption: string;
+  initialOption?: Option;
 }
 
 const Select = (props: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(
-    props.options[0].value || 'select',
+    props.initialOption?.value || props.options[0].value,
   );
 
   const arrowAnimation = () =>
@@ -25,7 +26,7 @@ const Select = (props: SelectProps) => {
   };
 
   useEffect(() => {
-    props.onChange(props.options[0]);
+    props.onChange(props.initialOption || props.options[0]);
   }, []);
 
   return (

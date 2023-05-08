@@ -1,33 +1,41 @@
 import React, { useEffect, useState } from 'react';
-import styles from './BookCreateForm.module.scss';
+import styles from './BookEditForm.module.scss';
 import Input from '../../../ui/input/Input';
-import { TextArea } from '../../../ui/textArea/TextArea';
-import { ImageLoader } from '../../../ui/imageLoader/ImageLoader';
 import Button from '../../../ui/button/Button';
+import { TextArea } from '../../../ui/textArea/TextArea';
 import Form from '../../../form/Form';
+import ImageEditor from '../../../imageEditor/ImageEditor';
 import Book, { BookCreateData } from '../../../../core/types/book';
-import Author from '../../../../core/types/author';
-import { useStore } from '../../../../context/storeContext';
 import Select from '../../../ui/select/Select';
 import Option from '../../../../core/types/option';
-import Genre from '../../../../core/types/genre';
-import { observer } from 'mobx-react';
+import { useStore } from '../../../../context/storeContext';
 
-interface BookCreateFormProps {
-  onSubmit: (book: BookCreateData) => void;
+interface BookEditFormProps {
+  book: Book;
+  onSubmit: (book: Book) => void;
 }
 
-const BookCreateForm = observer((props: BookCreateFormProps) => {
-  const [image, setImage] = useState('');
-  const [name, setName] = useState('');
-  const [isbn, setIsbn] = useState('');
-  const [description, setDescription] = useState('');
-  const [authorId, setAuthorId] = useState<number>(0);
-  const [genreId, setGenreId] = useState<number>(0);
+const BookEditForm = (props: BookEditFormProps) => {
+  const [image, setImage] = useState<string>(props.book.image);
+  const [name, setName] = useState<string>(props.book.name);
+  const [isbn, setIsbn] = useState<string>(props.book.isbn);
+  const [description, setDescription] = useState<string>(
+    props.book.description,
+  );
+  const [authorId, setAuthorId] = useState<number>(props.book.author.id);
+  const [genreId, setGenreId] = useState<number>(props.book.genre.id);
   const [authorOptions, setAuthorOptions] = useState<Option[]>([]);
   const [genreOptions, setGenreOptions] = useState<Option[]>([]);
   const authorStore = useStore('AuthorStore');
   const genreStore = useStore('GenreStore');
+
+  const getInitialAuthorOption = (): Option | undefined => {
+    return authorOptions?.find((option) => option.id === props.book.author.id);
+  };
+
+  const getInitialGenreOption = (): Option | undefined => {
+    return genreOptions?.find((option) => option.id === props.book.genre.id);
+  };
 
   const setAuthorByOption = (option: Option) => {
     setAuthorId(option.id);
@@ -45,7 +53,8 @@ const BookCreateForm = observer((props: BookCreateFormProps) => {
   };
 
   const onSubmit = async () => {
-    const book: Partial<BookCreateData> = {
+    const book: Partial<Book> = {
+      id: props.book.id,
       image,
       name,
       isbn,
@@ -88,14 +97,33 @@ const BookCreateForm = observer((props: BookCreateFormProps) => {
 
   return (
     <Form>
-      <ImageLoader onLoad={(newImage) => setImage(newImage || '')} />
-      <Input type="text" placeholder="Name" onChange={setName} />
-      <Input type="text" placeholder="ISBN" onChange={setIsbn} />
+      <div className={styles.image}>
+        <img src={image} alt="author" />
+        <ImageEditor
+          onLoad={(newImage) => setImage(newImage || '')}
+          className={styles.imageLoader}
+        />
+      </div>
+      <Input
+        value={name}
+        type={'text'}
+        onChange={setName}
+        className={styles.input}
+        placeholder={'Name'}
+      />
+      <Input
+        value={isbn}
+        type={'text'}
+        onChange={setIsbn}
+        className={styles.input}
+        placeholder={'ISBN'}
+      />
       {authorOptions.length > 0 ? (
         <Select
           options={authorOptions}
           onChange={setAuthorByOption}
           caption={'Author'}
+          initialOption={getInitialAuthorOption()}
         />
       ) : (
         <div>Loading...</div>
@@ -105,16 +133,22 @@ const BookCreateForm = observer((props: BookCreateFormProps) => {
           options={genreOptions}
           onChange={setGenreByOption}
           caption={'Genre'}
+          initialOption={getInitialGenreOption()}
         />
       ) : (
         <div>Loading...</div>
       )}
-      <TextArea placeholder="Description" onChange={setDescription} />
+      <TextArea
+        value={description}
+        onChange={setDescription}
+        className={styles.input}
+        placeholder={'Description'}
+      />
       <Button type="primary" onClick={onSubmit}>
-        Create
+        Update
       </Button>
     </Form>
   );
-});
+};
 
-export default BookCreateForm;
+export default BookEditForm;

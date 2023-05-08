@@ -23,17 +23,11 @@ import GenreCreatePage from './pages/genres/create/GenreCreatePage';
 import { LOGIN_ROUTE } from './core/constants/routes';
 import Loader from './components/ui/loader/Loader';
 import styles from './App.module.scss';
+import Book from './core/types/book';
+import BookEditPage from './pages/books/edit/BookEditPage';
 
 function App() {
   const userStore = useStore('UserStore');
-
-  // const fetchUser = async () => {
-  //   await userStore.fetchUser();
-  // };
-  //
-  // useEffect(() => {
-  //   fetchUser();
-  // }, []);
 
   const fetchUser = new Promise<void>(async (resolve) => {
     await userStore.fetchUser();
@@ -53,6 +47,7 @@ function App() {
           <Route path={'books'}>
             <Route index element={<BooksListPage />} />
             <Route path={'create'} element={<BookCreatePage />} />
+            <Route path={'edit/:bookId'} element={<BookEditPage />} />
           </Route>
           <Route path={'authors'}>
             <Route index element={<AuthorsListPage />} />

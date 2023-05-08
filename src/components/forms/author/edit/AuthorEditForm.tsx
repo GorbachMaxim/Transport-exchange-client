@@ -3,7 +3,6 @@ import styles from './AuthorEditForm.module.scss';
 import Author from '../../../../core/types/author';
 import Input from '../../../ui/input/Input';
 import Button from '../../../ui/button/Button';
-import preventDefaultSubmit from '../../../../core/utils/preventDefaultSubmit';
 import { TextArea } from '../../../ui/textArea/TextArea';
 import Form from '../../../form/Form';
 import ImageEditor from '../../../imageEditor/ImageEditor';
@@ -44,17 +43,20 @@ const AuthorEditForm = (props: AuthorEditFormProps) => {
         type={'text'}
         onChange={setName}
         className={styles.input}
+        placeholder={'Name'}
       />
       <Input
         value={surname}
         type={'text'}
         onChange={setSurname}
         className={styles.input}
+        placeholder={'Surname'}
       />
       <TextArea
         value={biography}
         onChange={setBiography}
         className={styles.input}
+        placeholder={'Biography'}
       />
       <Button type="primary" onClick={onSubmit}>
         Update
