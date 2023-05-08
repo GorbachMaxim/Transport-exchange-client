@@ -1,11 +1,12 @@
 import { makeAutoObservable } from 'mobx';
 import api from '../core/api/api';
 import Author from '../core/types/author';
+import ConfirmationStore from './confirmationStore';
 
 class AuthorStore {
   private authors: Author[] = [];
 
-  constructor() {
+  constructor(private confirmationStore: ConfirmationStore) {
     makeAutoObservable(this);
   }
 
@@ -25,12 +26,20 @@ class AuthorStore {
     return await api.updateAuthor(author);
   }
 
-  async deleteAuthor(id: number): Promise<void | null> {
+  async deleteAuthorById(id: number): Promise<void> {
     const response = await api.deleteAuthorById(id);
 
     if (response !== null) {
       this.authors = this.authors.filter((author) => author.id !== id);
     }
+  }
+
+  async deleteAuthor(author: Author): Promise<void | null> {
+    this.confirmationStore.show(
+      'Delete this author?',
+      `${author.name} ${author.surname}`,
+      async () => await this.deleteAuthorById(author.id),
+    );
   }
 
   async createAuthor(author: Author): Promise<void> {

@@ -1,11 +1,12 @@
 import { makeAutoObservable } from 'mobx';
 import api from '../core/api/api';
 import Genre, { GenreCreateData } from '../core/types/genre';
+import ConfirmationStore from './confirmationStore';
 
 class GenreStore {
   private genres: Genre[] = [];
 
-  constructor() {
+  constructor(private confirmationStore: ConfirmationStore) {
     makeAutoObservable(this);
   }
 

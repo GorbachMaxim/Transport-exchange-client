@@ -35,8 +35,8 @@ const Authors = observer(() => {
     navigate(`${AUTHORS_ROUTE}/create`);
   };
 
-  const deleteAuthor = async (authorId: number): Promise<void> => {
-    await authorStore.deleteAuthor(authorId);
+  const deleteAuthor = async (author: Author): Promise<void> => {
+    await authorStore.deleteAuthor(author);
   };
 
   useEffect(() => {
@@ -95,7 +95,7 @@ const Authors = observer(() => {
               </button>
               <button
                 className={styles.deleteBtn}
-                onClick={() => deleteAuthor(author.id)}
+                onClick={() => deleteAuthor(author)}
               >
                 <DeleteIcon />
               </button>

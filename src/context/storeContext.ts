@@ -7,9 +7,9 @@ import ConfirmationStore from '../store/confirmationStore';
 
 const confirmationStore = new ConfirmationStore();
 const userStore = new UserStore();
-const authorStore = new AuthorStore();
+const authorStore = new AuthorStore(confirmationStore);
 const bookStore = new BookStore(confirmationStore);
-const genreStore = new GenreStore();
+const genreStore = new GenreStore(confirmationStore);
 
 const { StoreProvider, useStore } = createStoreContext({
   UserStore: userStore,

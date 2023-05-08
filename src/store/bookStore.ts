@@ -31,7 +31,7 @@ class BookStore {
     // }
   }
 
-  async deleteBookById(id: number) {
+  async deleteBookById(id: number): Promise<void> {
     const response = await api.deleteBookById(id);
 
     if (response !== null) {
