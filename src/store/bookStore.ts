@@ -21,9 +21,9 @@ class BookStore {
   async createBook(book: BookCreateData): Promise<void> {
     const response = await api.createBook(book);
 
-    if (response !== null) {
-      this.books = [...this.books, response];
-    }
+    // if (response !== null) {
+    //   this.books = [...this.books, response];
+    // }
   }
 
   getBooks() {

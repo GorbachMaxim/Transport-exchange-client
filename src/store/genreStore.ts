@@ -20,9 +20,9 @@ class GenreStore {
   async createGenre(genre: Genre): Promise<void> {
     const response = await api.createGenre(genre);
 
-    if (response !== null) {
-      this.genres = [...this.genres, response];
-    }
+    // if (response !== null) {
+    //   this.genres = [...this.genres, response];
+    // }
   }
 
   getGenres() {

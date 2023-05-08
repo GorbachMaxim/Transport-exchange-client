@@ -12,7 +12,7 @@ const GenreCreatePage = () => {
 
   const onSubmit = async (genre: GenreCreateData) => {
     await genreStore.createGenre(genre as Genre);
-    navigate(`${GENRES_ROUTE}`);
+    navigate(GENRES_ROUTE);
   };
 
   return (

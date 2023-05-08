@@ -36,9 +36,9 @@ class AuthorStore {
   async createAuthor(author: Author): Promise<void> {
     const response = await api.createAuthor(author);
 
-    if (response !== null) {
-      this.authors = [...this.authors, author];
-    }
+    // if (response !== null) {
+    //   this.authors = [...this.authors, author];
+    // }
   }
 
   sortByField(field: keyof Author): void {

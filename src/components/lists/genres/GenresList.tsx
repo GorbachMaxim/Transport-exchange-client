@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useEffect, lazy } from 'react';
 import styles from './GenresList.module.scss';
 import Genre from '../../../core/types/genre';
-import AuthorCard from '../../cards/author/AuthorCard';
 import GenreCard from '../../cards/genre/GenreCard';
 
 interface GenresListProps {

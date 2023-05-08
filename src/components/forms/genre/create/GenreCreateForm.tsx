@@ -22,7 +22,7 @@ const GenreCreateForm = (props: GenreCreateFormProps) => {
       name,
       description,
     };
-    props.onSubmit(genre);
+    await props.onSubmit(genre);
   };
 
   return (
