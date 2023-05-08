@@ -7,6 +7,7 @@ import { observer } from 'mobx-react';
 import { ReactComponent as EditIcon } from '../../../../assets/icons/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from '../../../../assets/icons/delete-icon.svg';
 import Button from '../../../../components/ui/button/Button';
+import Book from '../../../../core/types/book';
 
 const Books = observer(() => {
   const bookStore = useStore('BookStore');
@@ -24,8 +25,8 @@ const Books = observer(() => {
     navigate(`${BOOKS_ROUTE}/create`);
   };
 
-  const deleteBook = async (bookId: number): Promise<void> => {
-    await bookStore.deleteBook(bookId);
+  const deleteBook = async (book: Book): Promise<void> => {
+    await bookStore.deleteBook(book);
   };
 
   useEffect(() => {
@@ -70,7 +71,7 @@ const Books = observer(() => {
               </button>
               <button
                 className={styles.deleteBtn}
-                onClick={() => deleteBook(book.id)}
+                onClick={() => deleteBook(book)}
               >
                 <DeleteIcon />
               </button>

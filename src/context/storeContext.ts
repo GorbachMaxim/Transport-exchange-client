@@ -3,10 +3,12 @@ import UserStore from '../store/userStore';
 import AuthorStore from '../store/authorStore';
 import BookStore from '../store/bookStore';
 import GenreStore from '../store/genreStore';
+import ConfirmationStore from '../store/confirmationStore';
 
+const confirmationStore = new ConfirmationStore();
 const userStore = new UserStore();
 const authorStore = new AuthorStore();
-const bookStore = new BookStore();
+const bookStore = new BookStore(confirmationStore);
 const genreStore = new GenreStore();
 
 const { StoreProvider, useStore } = createStoreContext({
@@ -14,6 +16,7 @@ const { StoreProvider, useStore } = createStoreContext({
   AuthorStore: authorStore,
   BookStore: bookStore,
   GenreStore: genreStore,
+  ConfirmationStore: confirmationStore,
 });
 
 export { StoreProvider, useStore };

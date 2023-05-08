@@ -25,6 +25,7 @@ import Loader from './components/ui/loader/Loader';
 import styles from './App.module.scss';
 import Book from './core/types/book';
 import BookEditPage from './pages/books/edit/BookEditPage';
+import Confirmation from './components/confirmation/Confirmation';
 
 function App() {
   const userStore = useStore('UserStore');
@@ -72,6 +73,7 @@ function App() {
           </Route>
         </Routes>
         <Footer />
+        <Confirmation />
       </BrowserRouter>
     </Loader>
   );
