@@ -26,6 +26,14 @@ class BookStore {
     // }
   }
 
+  async deleteBook(id: number): Promise<void> {
+    const response = await api.deleteBookById(id);
+
+    if (response !== null) {
+      this.books = this.books.filter((book) => book.id !== id);
+    }
+  }
+
   getBooks() {
     return this.books;
   }

@@ -178,6 +178,15 @@ class Api implements IApi {
       },
     });
   }
+
+  async deleteBookById(id: number): Promise<void | null> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${BOOKS_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
 }
 
 const api = new Api();
