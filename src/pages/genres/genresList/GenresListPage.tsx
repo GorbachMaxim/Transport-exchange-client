@@ -3,26 +3,22 @@ import styles from './GenresListPage.module.scss';
 import { useStore } from '../../../context/storeContext';
 import { observer } from 'mobx-react';
 import GenresList from '../../../components/lists/genres/GenresList';
+import Loader from '../../../components/ui/loader/Loader';
 
 const GenresListPage = observer(() => {
   const genreStore = useStore('GenreStore');
 
-  const fetchGenres = async (): Promise<void> => {
+  const fetchGenres = new Promise<void>(async (resolve) => {
     await genreStore.fetchGenres();
-  };
-
-  useEffect(() => {
-    fetchGenres();
-  }, []);
+    resolve();
+  });
 
   return (
     <main className={`${styles.genresPage} container page`}>
       <h2 className={`pageTitle`}>Genres</h2>
-      {genreStore.getGenres().length > 0 ? (
-        <GenresList genres={genreStore.getGenres()} />
-      ) : (
-        <span className={styles.noAuthors}>Genres not found</span>
-      )}
+      <Loader promise={fetchGenres} loaderClassName={styles.loader}>
+        <GenresList />
+      </Loader>
     </main>
   );
 });

@@ -3,26 +3,22 @@ import styles from './BooksListPage.module.scss';
 import { useStore } from '../../../context/storeContext';
 import BooksList from '../../../components/lists/books/BooksList';
 import { observer } from 'mobx-react';
+import Loader from '../../../components/ui/loader/Loader';
 
 const BooksListPage: FC = observer(() => {
   const bookStore = useStore('BookStore');
 
-  const fetchBooks = async () => {
+  const fetchBooks = new Promise<void>(async (resolve) => {
     await bookStore.fetchBooks();
-  };
-
-  useEffect(() => {
-    fetchBooks();
-  }, []);
+    resolve();
+  });
 
   return (
     <main className={`${styles.booksPage} container page`}>
       <h2 className={`pageTitle`}>Authors</h2>
-      {bookStore.getBooks().length > 0 ? (
-        <BooksList books={bookStore.getBooks()} />
-      ) : (
-        <span className={styles.noAuthors}>Books not found</span>
-      )}
+      <Loader promise={fetchBooks} loaderClassName={styles.loader}>
+        <BooksList />
+      </Loader>
     </main>
   );
 });

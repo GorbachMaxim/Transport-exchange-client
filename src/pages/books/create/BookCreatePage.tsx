@@ -11,7 +11,6 @@ const BookCreatePage = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (book: BookCreateData): Promise<void> => {
-    console.log(book);
     await bookStore.createBook(book);
     navigate(BOOKS_ROUTE);
   };

@@ -21,51 +21,64 @@ import BookCreatePage from './pages/books/create/BookCreatePage';
 import GenresListPage from './pages/genres/genresList/GenresListPage';
 import GenreCreatePage from './pages/genres/create/GenreCreatePage';
 import { LOGIN_ROUTE } from './core/constants/routes';
+import Loader from './components/ui/loader/Loader';
+import styles from './App.module.scss';
 
 function App() {
   const userStore = useStore('UserStore');
 
-  const fetchUser = async () => {
-    await userStore.fetchUser();
-  };
+  // const fetchUser = async () => {
+  //   await userStore.fetchUser();
+  // };
+  //
+  // useEffect(() => {
+  //   fetchUser();
+  // }, []);
 
-  useEffect(() => {
-    fetchUser();
-  }, []);
+  const fetchUser = new Promise<void>(async (resolve) => {
+    await userStore.fetchUser();
+    resolve();
+  });
 
   return (
-    <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route path={'/'} element={<Navigate to={`${LOGIN_ROUTE}`} />} />
-        <Route path={'books'}>
-          <Route index element={<BooksListPage />} />
-          <Route path={'create'} element={<BookCreatePage />} />
-        </Route>
-        <Route path={'authors'}>
-          <Route index element={<AuthorsListPage />} />
-          <Route path={':authorId'} element={<AuthorPage />} />
-          <Route path={'create'} element={<AuthorCreatePage />} />
-          <Route path={'edit/:authorId'} element={<AuthorEditPage />} />
-        </Route>
-        <Route path={'genres'}>
-          <Route index element={<GenresListPage />} />
-          <Route path={'create'} element={<GenreCreatePage />} />
-        </Route>
-        <Route path={'contacts'} element={<HomePage />} />
-        <Route path={'registration'} element={<RegistrationPage />} />
-        <Route path={'login'} element={<LoginPage />} />
-        <Route path={'account'} element={<AccountPage />}>
-          <Route index element={<Navigate to="/account/overview" />} />
-          <Route path={'/account/overview'} element={<Overview />} />
-          <Route path={'/account/books'} element={<Books />} />
-          <Route path={'/account/authors'} element={<Authors />} />
-          <Route path={'/account/genres'} element={<Genres />} />
-          <Route path={'/account/users'} element={<Users />} />
-        </Route>
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <Loader
+      promise={fetchUser}
+      loaderClassName={styles.loader}
+      spinnerClassName={styles.spinner}
+    >
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path={'/'} element={<Navigate to={`${LOGIN_ROUTE}`} />} />
+          <Route path={'books'}>
+            <Route index element={<BooksListPage />} />
+            <Route path={'create'} element={<BookCreatePage />} />
+          </Route>
+          <Route path={'authors'}>
+            <Route index element={<AuthorsListPage />} />
+            <Route path={':authorId'} element={<AuthorPage />} />
+            <Route path={'create'} element={<AuthorCreatePage />} />
+            <Route path={'edit/:authorId'} element={<AuthorEditPage />} />
+          </Route>
+          <Route path={'genres'}>
+            <Route index element={<GenresListPage />} />
+            <Route path={'create'} element={<GenreCreatePage />} />
+          </Route>
+          <Route path={'contacts'} element={<HomePage />} />
+          <Route path={'registration'} element={<RegistrationPage />} />
+          <Route path={'login'} element={<LoginPage />} />
+          <Route path={'account'} element={<AccountPage />}>
+            <Route index element={<Navigate to="/account/overview" />} />
+            <Route path={'/account/overview'} element={<Overview />} />
+            <Route path={'/account/books'} element={<Books />} />
+            <Route path={'/account/authors'} element={<Authors />} />
+            <Route path={'/account/genres'} element={<Genres />} />
+            <Route path={'/account/users'} element={<Users />} />
+          </Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </Loader>
   );
 }
 
