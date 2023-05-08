@@ -16,7 +16,7 @@ const GenreEditPage = () => {
     const response = await genreStore.updateGenre(genre);
 
     if (response !== null) {
-      navigate(GENRES_ROUTE);
+      navigate(`${GENRES_ROUTE}/${genre.id}`);
     }
   };
 

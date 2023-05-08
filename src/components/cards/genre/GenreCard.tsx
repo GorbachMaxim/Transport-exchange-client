@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './GenreCard.module.scss';
 import Genre from '../../../core/types/genre';
 import cutStringToLength from '../../../core/utils/cutStringToLength';
-import { AUTHORS_ROUTE } from '../../../core/constants/routes';
+import { GENRES_ROUTE } from '../../../core/constants/routes';
 import { useNavigate } from 'react-router-dom';
 
 interface GenreCardProps {
@@ -24,7 +24,7 @@ const GenreCard = (props: GenreCardProps) => {
           {cutStringToLength(props.genre.description, textLen)}...
           <span
             className={styles.viewMore}
-            onClick={() => navigate(`${AUTHORS_ROUTE}/${props.genre.id}`)}
+            onClick={() => navigate(`${GENRES_ROUTE}/${props.genre.id}`)}
           >
             View more
           </span>

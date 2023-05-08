@@ -27,6 +27,7 @@ import Book from './core/types/book';
 import BookEditPage from './pages/books/edit/BookEditPage';
 import Confirmation from './components/confirmation/Confirmation';
 import GenreEditPage from './pages/genres/edit/GenreEditPage';
+import GenrePage from './pages/genres/genre/GenrePage';
 
 function App() {
   const userStore = useStore('UserStore');
@@ -59,6 +60,7 @@ function App() {
           </Route>
           <Route path={'genres'}>
             <Route index element={<GenresListPage />} />
+            <Route path={':genreId'} element={<GenrePage />} />
             <Route path={'create'} element={<GenreCreatePage />} />
             <Route path={'edit/:genreId'} element={<GenreEditPage />} />
           </Route>
