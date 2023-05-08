@@ -26,6 +26,7 @@ import styles from './App.module.scss';
 import Book from './core/types/book';
 import BookEditPage from './pages/books/edit/BookEditPage';
 import Confirmation from './components/confirmation/Confirmation';
+import GenreEditPage from './pages/genres/edit/GenreEditPage';
 
 function App() {
   const userStore = useStore('UserStore');
@@ -59,6 +60,7 @@ function App() {
           <Route path={'genres'}>
             <Route index element={<GenresListPage />} />
             <Route path={'create'} element={<GenreCreatePage />} />
+            <Route path={'edit/:genreId'} element={<GenreEditPage />} />
           </Route>
           <Route path={'contacts'} element={<HomePage />} />
           <Route path={'registration'} element={<RegistrationPage />} />

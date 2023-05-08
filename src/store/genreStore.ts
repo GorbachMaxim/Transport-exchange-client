@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import api from '../core/api/api';
 import Genre, { GenreCreateData } from '../core/types/genre';
 import ConfirmationStore from './confirmationStore';
+import Book from '../core/types/book';
 
 class GenreStore {
   private genres: Genre[] = [];
@@ -18,12 +19,20 @@ class GenreStore {
     }
   }
 
+  async fetchGenreById(id: number): Promise<Genre | null> {
+    return await api.fetchGenreById(id);
+  }
+
   async createGenre(genre: Genre): Promise<void> {
     const response = await api.createGenre(genre);
 
     // if (response !== null) {
     //   this.genres = [...this.genres, response];
     // }
+  }
+
+  async updateGenre(genre: Genre): Promise<Genre | null> {
+    return await api.updateGenre(genre);
   }
 
   getGenres() {

@@ -158,27 +158,6 @@ class Api implements IApi {
     });
   }
 
-  async fetchGenres(): Promise<Genre[] | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', GENRES_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async createGenre(genre: Genre): Promise<Genre | null> {
-    const token = getCookie('token');
-    return await this.fetch('post', GENRES_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: {
-        ...genre,
-      },
-    });
-  }
-
   async deleteBookById(id: number): Promise<void | null> {
     const token = getCookie('token');
     await this.fetch('delete', `${BOOKS_URL}/${id}`, {
@@ -205,6 +184,50 @@ class Api implements IApi {
       },
       data: {
         ...book,
+      },
+    });
+
+    return response;
+  }
+
+  async fetchGenres(): Promise<Genre[] | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', GENRES_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchGenreById(id: number): Promise<Genre | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', `${GENRES_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async createGenre(genre: Genre): Promise<Genre | null> {
+    const token = getCookie('token');
+    return await this.fetch('post', GENRES_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...genre,
+      },
+    });
+  }
+
+  async updateGenre(genre: Genre): Promise<Genre | null> {
+    const token = getCookie('token');
+    const response = await this.fetch<Genre>('put', `${GENRES_URL}/user`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...genre,
       },
     });
 
