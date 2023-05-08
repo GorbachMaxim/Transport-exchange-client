@@ -220,6 +220,15 @@ class Api implements IApi {
     });
   }
 
+  async deleteGenreById(id: number): Promise<void | null> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${GENRES_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
   async updateGenre(genre: Genre): Promise<Genre | null> {
     const token = getCookie('token');
     const response = await this.fetch<Genre>('put', `${GENRES_URL}/user`, {

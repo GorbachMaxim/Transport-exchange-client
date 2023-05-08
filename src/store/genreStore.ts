@@ -11,6 +11,22 @@ class GenreStore {
     makeAutoObservable(this);
   }
 
+  private async deleteGenreById(id: number): Promise<void> {
+    const response = await api.deleteGenreById(id);
+
+    if (response !== null) {
+      this.genres = this.genres.filter((genre) => genre.id !== id);
+    }
+  }
+
+  deleteGenre(genre: Genre): void {
+    this.confirmationStore.show(
+      'Delete this genre?',
+      genre.name,
+      async () => await this.deleteGenreById(genre.id),
+    );
+  }
+
   async fetchGenres(): Promise<void> {
     const fetchedGenres = await api.fetchGenres();
 
