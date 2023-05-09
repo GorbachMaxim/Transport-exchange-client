@@ -128,12 +128,21 @@ class Api implements IApi {
 
   async addReadBook(book: Book): Promise<void> {
     const token = getCookie('token');
-    await this.fetch<User>('put', `${USERS_URL}/readbook/${book.id}`, {
+    await this.fetch('put', `${USERS_URL}/readbook/${book.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       data: {
         ...book,
+      },
+    });
+  }
+
+  async removeReadBook(book: Book): Promise<void> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${USERS_URL}/readbook/${book.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
   }

@@ -6,3 +6,4 @@ export const USERS_ROUTE = '/user';
 export const REGISTRATION_ROUTE = '/registration';
 export const LOGIN_ROUTE = '/login';
 export const ACCOUNT_ROUTE = '/account';
+export const READBOOKS_ROUTE = '/readbooks';

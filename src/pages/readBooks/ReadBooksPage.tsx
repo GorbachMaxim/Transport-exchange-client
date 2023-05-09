@@ -14,6 +14,7 @@ const ReadBooksPage = () => {
 
   return (
     <div className={`${styles.readBook} container page`}>
+      <h2 className={'pageTitle'}>My read books</h2>
       <Loader promise={fetchReadBooks}>
         <ReadBooks />
       </Loader>

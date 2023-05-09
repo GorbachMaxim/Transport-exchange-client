@@ -53,6 +53,10 @@ class UserStore {
     await api.addReadBook(book);
   }
 
+  async removeReadBook(book: Book): Promise<void> {
+    await api.removeReadBook(book);
+  }
+
   getUser() {
     return this.user;
   }

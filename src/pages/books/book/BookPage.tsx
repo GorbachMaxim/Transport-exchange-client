@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { useStore } from '../../../context/storeContext';
 import Book from '../../../core/types/book';
-import { BOOKS_ROUTE } from '../../../core/constants/routes';
+import { BOOKS_ROUTE, READBOOKS_ROUTE } from '../../../core/constants/routes';
 import ReviewList from '../../../components/lists/review/ReviewList';
 import Button from '../../../components/ui/button/Button';
 
@@ -17,6 +17,12 @@ const BookPage = observer(() => {
 
   const addReadBook = async () => {
     await userStore.addReadBook(book);
+    navigate(READBOOKS_ROUTE);
+  };
+
+  const removeReadBook = async () => {
+    await userStore.removeReadBook(book);
+    navigate(READBOOKS_ROUTE);
   };
 
   const fetchBook = async () => {
@@ -37,14 +43,22 @@ const BookPage = observer(() => {
     <div className={`${styles.bookPage} container page`}>
       {book && (
         <div className={styles.content}>
-          <div>
+          <div className={styles.sidePanel}>
             <div className={styles.image}>
               <img src={book.image} alt="book cover" />
             </div>
-            <div>Rating: {book.avgScore}</div>
-            <Button onClick={addReadBook} type={'primary'}>
-              Add to read books
-            </Button>
+            <div className={styles.rating}>Rating: {book.avgScore}</div>
+            {userStore
+              .getUser()
+              ?.readBooks?.some((readBook) => readBook.id === book.id) ? (
+              <Button onClick={removeReadBook} type={'primary'}>
+                Remove from read books
+              </Button>
+            ) : (
+              <Button onClick={addReadBook} type={'primary'}>
+                Add to read books
+              </Button>
+            )}
           </div>
           <div className={styles.text}>
             <h2 className={styles.name}>{book.name}</h2>
