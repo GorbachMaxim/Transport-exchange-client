@@ -1,6 +1,7 @@
 interface Options {
   path?: string;
   expires?: Date | string;
+  'max-age'?: number;
 }
 
 export const getCookie = (name: string) => {
@@ -40,4 +41,10 @@ export const setCookie = (
   }
 
   document.cookie = updatedCookie;
+};
+
+export const deleteCookie = (name: string) => {
+  setCookie(name, '', {
+    'max-age': -1,
+  });
 };

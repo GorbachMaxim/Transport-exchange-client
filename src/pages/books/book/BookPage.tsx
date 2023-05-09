@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import { useStore } from '../../../context/storeContext';
 import Book from '../../../core/types/book';
 import { BOOKS_ROUTE } from '../../../core/constants/routes';
+import ReviewList from '../../../components/lists/review/ReviewList';
 
 const BookPage = observer(() => {
   const [book, setBook] = useState<Book>(null!);
@@ -14,6 +15,7 @@ const BookPage = observer(() => {
 
   const fetchBook = async () => {
     const receivedBook = await bookStore.fetchBookById(Number(bookId));
+    console.log(receivedBook);
     if (receivedBook) {
       setBook(receivedBook);
     } else {
@@ -35,6 +37,9 @@ const BookPage = observer(() => {
           <div className={styles.text}>
             <h2 className={styles.name}>{book.name}</h2>
             <p>{book.description}</p>
+          </div>
+          <div className={styles.review}>
+            <ReviewList reviews={book.reviews} />
           </div>
         </div>
       )}

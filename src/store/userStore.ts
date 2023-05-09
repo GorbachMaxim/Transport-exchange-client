@@ -1,8 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import User, { AuthData } from '../core/types/user';
 import api from '../core/api/api';
-import { setCookie } from '../core/utils/cookie';
-import Author from '../core/types/author';
+import { setCookie, deleteCookie } from '../core/utils/cookie';
 
 class UserStore {
   private user: User | null = null;
@@ -36,6 +35,7 @@ class UserStore {
 
   async logout(): Promise<void> {
     this.user = null;
+    deleteCookie('token');
   }
 
   getUser() {

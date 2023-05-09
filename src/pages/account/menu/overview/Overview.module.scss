@@ -5,18 +5,25 @@
   padding: 0 0 10px 0;
 }
 
-.caption {
-  margin: 0 0 10px 0;
-  color: var(--neutral-color-1);
+.username,
+.email,
+.verification {
+  margin: 0 0 15px 0;
 }
 
-.form {
+.verification {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
-  width: 100%;
+  width: fit-content;
+  span {
+    margin: 0 0 5px 0;
+  }
 }
 
-.input {
-  margin: 0 0 15px 0;
+.verified {
+  color: green;
+}
+
+.notVerified {
+  color: red;
 }
