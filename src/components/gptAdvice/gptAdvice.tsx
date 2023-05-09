@@ -3,6 +3,7 @@ import BookCard from '../cards/book/BookCard';
 import styles from '../../pages/advice/AdvicePage.module.scss';
 import { useStore } from '../../context/storeContext';
 import { observer } from 'mobx-react';
+import Typewriter from 'typewriter-effect';
 
 const GptAdvice = observer(() => {
   const gptStore = useStore('GptStore');
@@ -11,7 +12,15 @@ const GptAdvice = observer(() => {
     gptStore.getGptAdvice() && (
       <div>
         <BookCard book={gptStore.getGptAdvice().bookDto} />
-        <p className={styles.text}>{gptStore.getGptAdvice().message}</p>
+        <p className={styles.text}>
+          <Typewriter
+            options={{
+              strings: gptStore.getGptAdvice().message,
+              autoStart: true,
+              delay: 25,
+            }}
+          />
+        </p>
       </div>
     )
   );
