@@ -122,5 +122,9 @@
 
 .activeLink {
   //font-weight: 800;
-  color: var(--red-100);
+  color: var(--neutral-color-2);
+  svg path {
+    fill: var(--neutral-color-2);
+    stroke: var(--neutral-color-2);
+  }
 }

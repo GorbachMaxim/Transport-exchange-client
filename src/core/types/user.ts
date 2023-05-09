@@ -1,11 +1,12 @@
 import Role from './roles';
+import Book from './book';
 
 interface User {
   id: number;
   username: string;
   email: string;
   verified: boolean;
-  // readBooks: Book[];
+  readBooks: Book[];
   roles: Role[];
 }
 

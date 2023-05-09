@@ -2,6 +2,7 @@ import { makeAutoObservable } from 'mobx';
 import User, { AuthData } from '../core/types/user';
 import api from '../core/api/api';
 import { setCookie, deleteCookie } from '../core/utils/cookie';
+import Book from '../core/types/book';
 
 class UserStore {
   private user: User | null = null;
@@ -36,6 +37,20 @@ class UserStore {
   async logout(): Promise<void> {
     this.user = null;
     deleteCookie('token');
+  }
+
+  async fetchReadBooks(): Promise<void> {
+    if (this.user !== null) {
+      const response = await api.fetchReadBooks(this.user?.id);
+
+      if (response !== null) {
+        this.user.readBooks = response;
+      }
+    }
+  }
+
+  async addReadBook(book: Book): Promise<void> {
+    await api.addReadBook(book);
   }
 
   getUser() {

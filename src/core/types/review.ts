@@ -5,7 +5,7 @@ interface Review {
   id: number;
   mark: number;
   text: string;
-  book: Book;
+  // book: Book;
   user: User;
 }
 

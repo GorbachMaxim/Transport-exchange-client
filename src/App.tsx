@@ -31,6 +31,7 @@ import GenrePage from './pages/genres/genre/GenrePage';
 import BookPage from './pages/books/book/BookPage';
 import UserEditPage from './pages/user/edit/UserEditPage';
 import AdvicePage from './pages/advice/AdvicePage';
+import ReadBooksPage from './pages/readBooks/ReadBooksPage';
 
 function App() {
   const userStore = useStore('UserStore');
@@ -71,6 +72,7 @@ function App() {
           <Route path={'user'}>
             <Route path={'edit/:userId'} element={<UserEditPage />} />
           </Route>
+          <Route path={'readbooks'} element={<ReadBooksPage />} />
           <Route path={'advice'} element={<AdvicePage />} />
           <Route path={'registration'} element={<RegistrationPage />} />
           <Route path={'login'} element={<LoginPage />} />

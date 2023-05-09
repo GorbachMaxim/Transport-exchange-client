@@ -29,16 +29,16 @@ const Header = observer(() => {
           <SearchIcon className={styles.searchIcon} />
         </div>
         <div className={styles.menu}>
-          <NavLink to={'/advice'} className={styles.advise}>
+          <NavLink to={'/advice'} className={setActiveLink}>
             <OpenaiIcon className={styles.openaiIcon} />
             <span className={styles.cartCaption}>{'Need advice?'}</span>
           </NavLink>
-          <NavLink to={'/wishlist'} className={styles.wishlist}>
+          <NavLink to={'/readbooks'} className={setActiveLink}>
             <WishListIcon className={styles.wishlistIcon} />
             <span className={styles.wishlistCaption}>Read books</span>
           </NavLink>
           {userStore.getUser() ? (
-            <NavLink to={'/account'} className={styles.account}>
+            <NavLink to={'/account'} className={setActiveLink}>
               <AccountIcon className={styles.accountIcon} />
               <span className={styles.accountCaption}>Menu</span>
             </NavLink>

@@ -6,7 +6,12 @@
   flex-direction: column;
   align-items: center;
 
+  transition: 150ms linear;
   cursor: pointer;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 
 .image {

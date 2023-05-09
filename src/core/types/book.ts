@@ -11,6 +11,7 @@ interface Book {
   description: string;
   image: string;
   reviews: Review[];
+  avgScore: number;
 }
 
 type BookCreateData = Omit<Book, 'id' | 'reviews'>;
