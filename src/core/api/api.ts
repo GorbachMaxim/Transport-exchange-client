@@ -3,6 +3,7 @@ import {
   AUTHORS_URL,
   BASE_URL,
   BOOKS_URL,
+  CHATGPT_URL,
   GENRES_URL,
   SIGNIN_URL,
   SIGNUP_URL,
@@ -14,6 +15,7 @@ import { getCookie } from '../utils/cookie';
 import Author from '../types/author';
 import Book, { BookCreateData } from '../types/book';
 import Genre, { GenreCreateData } from '../types/genre';
+import GptAdvice from '../types/gptAdvice';
 
 type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
@@ -281,6 +283,15 @@ class Api implements IApi {
     });
 
     return response;
+  }
+
+  async getGPTAdvice(): Promise<GptAdvice | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', CHATGPT_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
   }
 }
 

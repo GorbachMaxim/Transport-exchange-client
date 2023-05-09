@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './Header.module.scss';
 import { NavLink } from 'react-router-dom';
 import { ReactComponent as AccountIcon } from '../../assets/icons/account-icon.svg';
-import { ReactComponent as CartIcon } from '../../assets/icons/cart-icon.svg';
+import { ReactComponent as OpenaiIcon } from '../../assets/icons/openai-icon.svg';
 import { ReactComponent as WishListIcon } from '../../assets/icons/wishlist-icon.svg';
 import { ReactComponent as SearchIcon } from '../../assets/icons/search-icon.svg';
 import { ReactComponent as Logo } from '../../assets/icons/logo.svg';
@@ -29,8 +29,8 @@ const Header = observer(() => {
           <SearchIcon className={styles.searchIcon} />
         </div>
         <div className={styles.menu}>
-          <NavLink to={'/cart'} className={styles.cart}>
-            <CartIcon className={styles.cartIcon} />
+          <NavLink to={'/advice'} className={styles.advise}>
+            <OpenaiIcon className={styles.openaiIcon} />
             <span className={styles.cartCaption}>{'Need advice?'}</span>
           </NavLink>
           <NavLink to={'/wishlist'} className={styles.wishlist}>

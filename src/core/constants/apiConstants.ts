@@ -6,3 +6,4 @@ export const AUTHORS_URL = '/api/author';
 export const ACCOUNT_URL = '/api/account';
 export const BOOKS_URL = '/api/book';
 export const GENRES_URL = '/api/genre';
+export const CHATGPT_URL = '/api/chatGPT';
