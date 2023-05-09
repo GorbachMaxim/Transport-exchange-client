@@ -7,6 +7,7 @@ import Book from '../../../core/types/book';
 import { BOOKS_ROUTE, READBOOKS_ROUTE } from '../../../core/constants/routes';
 import ReviewList from '../../../components/lists/review/ReviewList';
 import Button from '../../../components/ui/button/Button';
+import { ReactComponent as StarSvg } from '../../../assets/icons/star-icon.svg';
 
 const BookPage = observer(() => {
   const [book, setBook] = useState<Book>(null!);
@@ -35,6 +36,10 @@ const BookPage = observer(() => {
     }
   };
 
+  const rate = (mark: number) => {
+    console.log(mark);
+  };
+
   useEffect(() => {
     fetchBook();
   }, []);
@@ -47,7 +52,20 @@ const BookPage = observer(() => {
             <div className={styles.image}>
               <img src={book.image} alt="book cover" />
             </div>
-            <div className={styles.rating}>Rating: {book.avgScore}</div>
+            <div className={styles.rating}>
+              {book.avgScore > 0 ? (
+                <span className={styles.avgScore}>Rating: {book.avgScore}</span>
+              ) : (
+                <span className={styles.avgScore}>No ratings yet</span>
+              )}
+              <div className={styles.yourScore}>
+                <StarSvg className={styles.starIcon} onClick={() => rate(5)} />
+                <StarSvg className={styles.starIcon} onClick={() => rate(4)} />
+                <StarSvg className={styles.starIcon} onClick={() => rate(3)} />
+                <StarSvg className={styles.starIcon} onClick={() => rate(2)} />
+                <StarSvg className={styles.starIcon} onClick={() => rate(1)} />
+              </div>
+            </div>
             {userStore
               .getUser()
               ?.readBooks?.some((readBook) => readBook.id === book.id) ? (
