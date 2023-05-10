@@ -1,20 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './ReviewList.module.scss';
 import ReviewCard from '../../cards/review/ReviewCard';
 import Review from '../../../core/types/review';
+import api from '../../../core/api/api';
+import { useStore } from '../../../context/storeContext';
+import { observer } from 'mobx-react';
 
 interface ReviewListProps {
-  reviews: Review[];
+  bookId: number;
 }
 
-const ReviewList = (props: ReviewListProps) => {
+const ReviewList = observer((props: ReviewListProps) => {
+  const reviewStore = useStore('ReviewStore');
+
+  const fetchReviews = async () => {
+    await reviewStore.fetchReviews(props.bookId);
+  };
+
+  useEffect(() => {
+    fetchReviews();
+  }, [reviewStore]);
+
   return (
-    <div>
-      {props.reviews.map((review) => (
-        <ReviewCard review={review} key={review.id} />
-      ))}
+    <div className={styles.list}>
+      {reviewStore.getReviews() !== null ? (
+        reviewStore
+          .getReviews()
+          .map((review) => <ReviewCard review={review} key={review.id} />)
+          .reverse()
+      ) : (
+        <div>There are no reviews yet</div>
+      )}
     </div>
   );
-};
+});
 
 export default ReviewList;

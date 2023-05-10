@@ -3,6 +3,9 @@ import api from '../core/api/api';
 import Book, { BookCreateData } from '../core/types/book';
 import Author from '../core/types/author';
 import ConfirmationStore from './confirmationStore';
+import Review from '../core/types/review';
+import User from '../core/types/user';
+import book from '../core/types/book';
 
 class BookStore {
   private books: Book[] = [];

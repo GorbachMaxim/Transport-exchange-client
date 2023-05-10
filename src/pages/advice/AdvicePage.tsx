@@ -3,6 +3,7 @@ import styles from './AdvicePage.module.scss';
 import Loader from '../../components/ui/loader/Loader';
 import { useStore } from '../../context/storeContext';
 import GptAdvice from '../../components/gptAdvice/gptAdvice';
+import { observer } from 'mobx-react';
 
 const AdvicePage = () => {
   const gptStore = useStore('GptStore');

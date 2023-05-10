@@ -6,6 +6,7 @@ import GenreStore from '../store/genreStore';
 import ConfirmationStore from '../store/confirmationStore';
 import ClientStore from '../store/clientStore';
 import GptStore from '../store/gptStore';
+import ReviewStore from '../store/reviewStore';
 
 const confirmationStore = new ConfirmationStore();
 const userStore = new UserStore();
@@ -14,6 +15,7 @@ const bookStore = new BookStore(confirmationStore);
 const genreStore = new GenreStore(confirmationStore);
 const clientStore = new ClientStore(confirmationStore);
 const gptStore = new GptStore();
+const reviewStore = new ReviewStore();
 
 const { StoreProvider, useStore } = createStoreContext({
   UserStore: userStore,
@@ -23,6 +25,7 @@ const { StoreProvider, useStore } = createStoreContext({
   ConfirmationStore: confirmationStore,
   ClientStore: clientStore,
   GptStore: gptStore,
+  ReviewStore: reviewStore,
 });
 
 export { StoreProvider, useStore };

@@ -7,3 +7,5 @@ export const ACCOUNT_URL = '/api/account';
 export const BOOKS_URL = '/api/book';
 export const GENRES_URL = '/api/genre';
 export const CHATGPT_URL = '/api/chatGPT';
+export const APOD_URL = '/api/apod';
+export const REVIEWS_URL = '/api/review';
