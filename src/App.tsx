@@ -35,9 +35,11 @@ import ReadBooksPage from './pages/readBooks/ReadBooksPage';
 
 function App() {
   const userStore = useStore('UserStore');
+  const apodStore = useStore('ApodStore');
 
   const fetchUser = new Promise<void>(async (resolve) => {
     await userStore.fetchUser();
+    await apodStore.fetchApod();
     resolve();
   });
 

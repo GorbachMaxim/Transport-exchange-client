@@ -19,6 +19,7 @@ import Book, { BookCreateData } from '../types/book';
 import Genre, { GenreCreateData } from '../types/genre';
 import GptAdvice from '../types/gptAdvice';
 import Review from '../types/review';
+import Apod from '../types/apod';
 
 type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
@@ -358,7 +359,7 @@ class Api implements IApi {
     });
   }
 
-  async fetchApod(): Promise<string | null> {
+  async fetchApod(): Promise<Apod | null> {
     const token = getCookie('token');
     return await this.fetch('get', APOD_URL, {
       headers: {

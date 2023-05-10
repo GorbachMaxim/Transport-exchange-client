@@ -12,7 +12,8 @@
   width: 100px;
   height: 100px;
   object-fit: cover;
-  border: 5px solid var(--primary-color);
+  //border: 5px solid var(--primary-color);
+  border: 5px solid transparent;
   border-top: 5px solid var(--neutral-color-1);
   border-bottom: 5px solid var(--neutral-color-1);
   border-radius: 50%;
