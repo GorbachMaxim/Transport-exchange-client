@@ -4,12 +4,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { observer } from 'mobx-react';
 import { useStore } from '../../../context/storeContext';
 import Book from '../../../core/types/book';
-import { BOOKS_ROUTE, READBOOKS_ROUTE } from '../../../core/constants/routes';
+import {
+  ACCOUNT_ROUTE,
+  BOOKS_ROUTE,
+  READBOOKS_ROUTE,
+} from '../../../core/constants/routes';
 import ReviewList from '../../../components/lists/review/ReviewList';
 import Button from '../../../components/ui/button/Button';
 import { ReactComponent as StarSvg } from '../../../assets/icons/star-icon.svg';
 import ReviewForm from '../../../components/forms/review/ReviewForm';
 import Review, { ReviewCreateData } from '../../../core/types/review';
+import { Link } from 'react-router-dom';
 
 const BookPage = observer(() => {
   const [book, setBook] = useState<Book>(null!);
@@ -91,7 +96,19 @@ const BookPage = observer(() => {
             </div>
             <div className={styles.review}>
               <h2>Reviews</h2>
-              <ReviewForm onSubmit={sendReview} />
+              {userStore.getUser()?.verified ? (
+                <ReviewForm onSubmit={sendReview} />
+              ) : (
+                <div className={styles.notVerified}>
+                  You must verify your account to post reviews.
+                  <Link
+                    to={`${ACCOUNT_ROUTE}/overview`}
+                    className={styles.verifyLink}
+                  >
+                    Click here to verify
+                  </Link>
+                </div>
+              )}
               <ReviewList bookId={book.id} />
             </div>
           </div>

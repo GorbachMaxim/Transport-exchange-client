@@ -6,3 +6,4 @@ interface Role {
 }
 
 export default Role;
+export type { RoleName };

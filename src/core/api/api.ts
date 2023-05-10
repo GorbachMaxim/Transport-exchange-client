@@ -5,6 +5,7 @@ import {
   BASE_URL,
   BOOKS_URL,
   CHATGPT_URL,
+  EMAIL_URL,
   GENRES_URL,
   REVIEWS_URL,
   SIGNIN_URL,
@@ -126,6 +127,15 @@ class Api implements IApi {
       },
       data: {
         ...passwords,
+      },
+    });
+  }
+
+  async verifyUser(): Promise<void> {
+    const token = getCookie('token');
+    await this.fetch('get', `${EMAIL_URL}/verification`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
   }

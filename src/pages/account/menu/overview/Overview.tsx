@@ -7,6 +7,11 @@ import Button from '../../../../components/ui/button/Button';
 const Overview = observer(() => {
   const userStore = useStore('UserStore');
 
+  const verifyAccount = async () => {
+    await userStore.verify();
+    await userStore.fetchUser();
+  };
+
   return (
     <section className={styles.overview}>
       <h2 className={`accountPageTitle`}>Overview</h2>
@@ -27,7 +32,7 @@ const Overview = observer(() => {
           <span className={styles.notVerified}>
             Your account is not verified
           </span>
-          <Button onClick={() => {}} type={'primary'}>
+          <Button onClick={verifyAccount} type={'primary'}>
             Verify
           </Button>
         </div>

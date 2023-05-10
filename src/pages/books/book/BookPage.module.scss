@@ -45,6 +45,18 @@
   }
 }
 
+.notVerified {
+  color: var(--neutral-color-2);
+}
+
+.verifyLink {
+  margin: 0 0 0 10px;
+  color: var(--neutral-color-1);
+  &:hover {
+    color: var(--hover-neutral-color-1);
+  }
+}
+
 .rating {
   display: flex;
   justify-content: space-between;

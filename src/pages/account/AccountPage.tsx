@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import styles from './AccountPage.module.scss';
 import { ReactComponent as OverviewIcon } from '../../assets/icons/account-icon.svg';
@@ -10,8 +10,10 @@ import { ReactComponent as LogoutIcon } from '../../assets/icons/logout-icon.svg
 import ActiveLink from '../../core/types/activeLink';
 import { useStore } from '../../context/storeContext';
 import { HOME_ROUTE } from '../../core/constants/routes';
+import AvailableFor from '../../components/availableFor/AvailableFor';
+import { observer } from 'mobx-react';
 
-const AccountPage = () => {
+const AccountPage = observer(() => {
   const userStore = useStore('UserStore');
   const navigate = useNavigate();
 
@@ -25,6 +27,14 @@ const AccountPage = () => {
     navigate(HOME_ROUTE);
   };
 
+  const fetchUser = async () => {
+    await userStore.fetchUser();
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
   return (
     <main className={`${styles.account} container page`}>
       <ul className={styles.menu}>
@@ -34,30 +44,38 @@ const AccountPage = () => {
             <span>Account overview</span>
           </NavLink>
         </li>
-        <li>
-          <NavLink to={'/account/books'} className={setActiveLink}>
-            <BookIcon className={styles.icon} />
-            <span>Books</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to={'/account/authors'} className={setActiveLink}>
-            <AuthorIcon className={styles.icon} />
-            <span>Authors</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to={'/account/genres'} className={setActiveLink}>
-            <GenreIcon className={styles.icon} />
-            <span>Genres</span>
-          </NavLink>
-        </li>
-        <li>
-          <NavLink to={'/account/users'} className={setActiveLink}>
-            <UsersIcon className={styles.icon} />
-            <span>Users</span>
-          </NavLink>
-        </li>
+        <AvailableFor roles={['ROLE_ADMIN']}>
+          <li>
+            <NavLink to={'/account/books'} className={setActiveLink}>
+              <BookIcon className={styles.icon} />
+              <span>Books</span>
+            </NavLink>
+          </li>
+        </AvailableFor>
+        <AvailableFor roles={['ROLE_ADMIN']}>
+          <li>
+            <NavLink to={'/account/authors'} className={setActiveLink}>
+              <AuthorIcon className={styles.icon} />
+              <span>Authors</span>
+            </NavLink>
+          </li>
+        </AvailableFor>
+        <AvailableFor roles={['ROLE_ADMIN']}>
+          <li>
+            <NavLink to={'/account/genres'} className={setActiveLink}>
+              <GenreIcon className={styles.icon} />
+              <span>Genres</span>
+            </NavLink>
+          </li>
+        </AvailableFor>
+        <AvailableFor roles={['ROLE_ADMIN']}>
+          <li>
+            <NavLink to={'/account/users'} className={setActiveLink}>
+              <UsersIcon className={styles.icon} />
+              <span>Users</span>
+            </NavLink>
+          </li>
+        </AvailableFor>
         <li>
           <button
             className={`${styles.menuItem} ${styles.logoutBtn}`}
@@ -73,6 +91,6 @@ const AccountPage = () => {
       </div>
     </main>
   );
-};
+});
 
 export default AccountPage;

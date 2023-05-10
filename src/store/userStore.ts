@@ -39,6 +39,10 @@ class UserStore {
     deleteCookie('token');
   }
 
+  async verify(): Promise<void> {
+    await api.verifyUser();
+  }
+
   async fetchReadBooks(): Promise<void> {
     if (this.user !== null) {
       const response = await api.fetchReadBooks(this.user?.id);
