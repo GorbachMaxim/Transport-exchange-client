@@ -39,3 +39,9 @@
     fill: var(--neutral-color-2);
   }
 }
+
+.error {
+  position: relative;
+  color: var(--neutral-color-2);
+  top: -10px;
+}

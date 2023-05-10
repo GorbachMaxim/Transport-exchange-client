@@ -47,3 +47,24 @@
   font-size: 14px;
   color: var(--text-color-500);
 }
+
+.yourScore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.starIcon {
+  width: 25px;
+  height: 25px;
+  padding: 0 5px;
+  path {
+    fill: var(--text-color-600);
+  }
+}
+
+.activeStar {
+  path {
+    fill: var(--neutral-color-2);
+  }
+}

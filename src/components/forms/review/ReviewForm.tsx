@@ -13,13 +13,18 @@ interface ReviewFormProps {
 const ReviewForm = (props: ReviewFormProps) => {
   const [text, setText] = useState<string>('');
   const [mark, setMark] = useState<number>(0);
+  const [isError, setIsError] = useState<boolean>(false);
 
   const rate = (score: number) => {
-    console.log(score);
     setMark(score);
   };
 
   const onSubmit = async () => {
+    if (mark === 0) {
+      setIsError(true);
+      return;
+    }
+
     const review: ReviewCreateData = {
       mark,
       text,
@@ -27,6 +32,7 @@ const ReviewForm = (props: ReviewFormProps) => {
     props.onSubmit(review);
     setText('');
     setMark(0);
+    setIsError(false);
   };
 
   return (
@@ -46,6 +52,9 @@ const ReviewForm = (props: ReviewFormProps) => {
         </div>
       </div>
       <TextArea value={text} className={styles.textArea} onChange={setText} />
+      <div className={styles.error}>
+        {isError && <span>You have to rate it!</span>}
+      </div>
       <Button className={styles.button} onClick={onSubmit} type={'primary'}>
         Send review
       </Button>
