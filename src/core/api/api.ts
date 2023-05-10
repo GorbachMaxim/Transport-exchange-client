@@ -1,10 +1,12 @@
 import {
   ACCOUNT_URL,
+  APOD_URL,
   AUTHORS_URL,
   BASE_URL,
   BOOKS_URL,
   CHATGPT_URL,
   GENRES_URL,
+  REVIEWS_URL,
   SIGNIN_URL,
   SIGNUP_URL,
   USERS_URL,
@@ -16,6 +18,7 @@ import Author from '../types/author';
 import Book, { BookCreateData } from '../types/book';
 import Genre, { GenreCreateData } from '../types/genre';
 import GptAdvice from '../types/gptAdvice';
+import Review from '../types/review';
 
 type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
@@ -262,6 +265,37 @@ class Api implements IApi {
     return response;
   }
 
+  async fetchReviews(bookId: number): Promise<Review[] | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', `${REVIEWS_URL}/${bookId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async addReview(
+    user: User,
+    book: Book,
+    review: Review,
+  ): Promise<Review | null> {
+    const token = getCookie('token');
+    return await this.fetch('post', `${REVIEWS_URL}/${book.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...review,
+        user: {
+          ...user,
+        },
+        book: {
+          ...book,
+        },
+      },
+    });
+  }
+
   async fetchGenres(): Promise<Genre[] | null> {
     const token = getCookie('token');
     return await this.fetch('get', GENRES_URL, {
@@ -318,6 +352,15 @@ class Api implements IApi {
   async getGPTAdvice(): Promise<GptAdvice | null> {
     const token = getCookie('token');
     return await this.fetch('get', CHATGPT_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchApod(): Promise<string | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', APOD_URL, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

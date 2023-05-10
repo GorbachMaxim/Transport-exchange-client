@@ -9,4 +9,7 @@ interface Review {
   user: User;
 }
 
+type ReviewCreateData = Omit<Review, 'id' | 'user'>;
+
 export default Review;
+export type { ReviewCreateData };

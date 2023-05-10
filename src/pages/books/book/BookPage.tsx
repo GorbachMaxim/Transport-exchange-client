@@ -8,11 +8,14 @@ import { BOOKS_ROUTE, READBOOKS_ROUTE } from '../../../core/constants/routes';
 import ReviewList from '../../../components/lists/review/ReviewList';
 import Button from '../../../components/ui/button/Button';
 import { ReactComponent as StarSvg } from '../../../assets/icons/star-icon.svg';
+import ReviewForm from '../../../components/forms/review/ReviewForm';
+import Review, { ReviewCreateData } from '../../../core/types/review';
 
 const BookPage = observer(() => {
   const [book, setBook] = useState<Book>(null!);
   const bookStore = useStore('BookStore');
   const userStore = useStore('UserStore');
+  const reviewStore = useStore('ReviewStore');
   const { bookId } = useParams();
   const navigate = useNavigate();
 
@@ -26,6 +29,13 @@ const BookPage = observer(() => {
     navigate(READBOOKS_ROUTE);
   };
 
+  const sendReview = async (review: ReviewCreateData) => {
+    if (userStore.getUser() !== null) {
+      await reviewStore.addReview(userStore.getUser(), book, review as Review);
+      await reviewStore.fetchReviews(book.id);
+    }
+  };
+
   const fetchBook = async () => {
     const receivedBook = await bookStore.fetchBookById(Number(bookId));
 
@@ -34,10 +44,6 @@ const BookPage = observer(() => {
     } else {
       navigate(BOOKS_ROUTE);
     }
-  };
-
-  const rate = (mark: number) => {
-    console.log(mark);
   };
 
   useEffect(() => {
@@ -59,11 +65,11 @@ const BookPage = observer(() => {
                 <span className={styles.avgScore}>No ratings yet</span>
               )}
               <div className={styles.yourScore}>
-                <StarSvg className={styles.starIcon} onClick={() => rate(5)} />
-                <StarSvg className={styles.starIcon} onClick={() => rate(4)} />
-                <StarSvg className={styles.starIcon} onClick={() => rate(3)} />
-                <StarSvg className={styles.starIcon} onClick={() => rate(2)} />
-                <StarSvg className={styles.starIcon} onClick={() => rate(1)} />
+                <StarSvg className={styles.starIcon} />
+                <StarSvg className={styles.starIcon} />
+                <StarSvg className={styles.starIcon} />
+                <StarSvg className={styles.starIcon} />
+                <StarSvg className={styles.starIcon} />
               </div>
             </div>
             {userStore
@@ -79,11 +85,15 @@ const BookPage = observer(() => {
             )}
           </div>
           <div className={styles.text}>
-            <h2 className={styles.name}>{book.name}</h2>
-            <p>{book.description}</p>
-          </div>
-          <div className={styles.review}>
-            <ReviewList reviews={book.reviews} />
+            <div>
+              <h2 className={styles.name}>{book.name}</h2>
+              <p className={styles.description}>{book.description}</p>
+            </div>
+            <div className={styles.review}>
+              <h2>Reviews</h2>
+              <ReviewForm onSubmit={sendReview} />
+              <ReviewList bookId={book.id} />
+            </div>
           </div>
         </div>
       )}
