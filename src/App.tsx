@@ -52,7 +52,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path={'/'} element={<Navigate to={`${BOOKS_ROUTE}`} />} />
+          <Route path={'/'} element={<Navigate to={`${LOGIN_ROUTE}`} />} />
           <Route path={'books'}>
             <Route index element={<BooksListPage />} />
             <Route path={':bookId'} element={<BookPage />} />

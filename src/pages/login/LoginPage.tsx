@@ -5,7 +5,7 @@ import Input from '../../components/ui/input/Input';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/ui/button/Button';
 import { useStore } from '../../context/storeContext';
-import { ACCOUNT_ROUTE } from '../../core/constants/routes';
+import { ACCOUNT_ROUTE, BOOKS_ROUTE } from '../../core/constants/routes';
 import LoginForm from '../../components/forms/login/LoginForm';
 
 const LoginPage = () => {
@@ -15,7 +15,7 @@ const LoginPage = () => {
   const onSubmit = async (user: AuthData) => {
     await userStore.singIn(user);
     if (userStore.getUser()) {
-      navigate(ACCOUNT_ROUTE);
+      navigate(BOOKS_ROUTE);
     }
   };
 
