@@ -13,6 +13,11 @@ interface ReviewListProps {
 const ReviewList = observer((props: ReviewListProps) => {
   const reviewStore = useStore('ReviewStore');
 
+  const deleteReview = async (review: Review) => {
+    await reviewStore.deleteReview(review.id);
+    await reviewStore.fetchReviews(props.bookId);
+  };
+
   const fetchReviews = async () => {
     await reviewStore.fetchReviews(props.bookId);
   };
@@ -26,7 +31,13 @@ const ReviewList = observer((props: ReviewListProps) => {
       {reviewStore.getReviews() !== null ? (
         reviewStore
           .getReviews()
-          .map((review) => <ReviewCard review={review} key={review.id} />)
+          .map((review) => (
+            <ReviewCard
+              review={review}
+              key={review.id}
+              onDelete={deleteReview}
+            />
+          ))
           .reverse()
       ) : (
         <div>There are no reviews yet</div>

@@ -2,12 +2,22 @@ import React from 'react';
 import styles from './ReviewCard.module.scss';
 import Review from '../../../core/types/review';
 import { ReactComponent as StarIcon } from '../../../assets/icons/star-icon.svg';
+import { ReactComponent as DeleteIcon } from '../../../assets/icons/delete-icon.svg';
+import { observer } from 'mobx-react';
+import { useStore } from '../../../context/storeContext';
 
 interface ReviewCardProps {
   review: Review;
+  onDelete: (review: Review) => void;
 }
 
-const ReviewCard = (props: ReviewCardProps) => {
+const ReviewCard = observer((props: ReviewCardProps) => {
+  const userStore = useStore('UserStore');
+
+  const deleteReview = async () => {
+    props.onDelete(props.review);
+  };
+
   return (
     <div className={styles.card}>
       <div className={styles.head}>
@@ -24,8 +34,11 @@ const ReviewCard = (props: ReviewCardProps) => {
         </div>
       </div>
       <p className={styles.text}>{props.review.text}</p>
+      {userStore.getUser()?.username === props.review.user.username && (
+        <DeleteIcon className={styles.deleteIcon} onClick={deleteReview} />
+      )}
     </div>
   );
-};
+});
 
 export default ReviewCard;

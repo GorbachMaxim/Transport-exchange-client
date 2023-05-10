@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   margin: 0 0 10px 0;
   padding: 15px;
   border-radius: 10px;
@@ -33,4 +34,17 @@
   margin: 10px 0 0 0;
   padding: 0 0 5px 0;
   font-size: 17px;
+}
+
+.deleteIcon {
+  position: absolute;
+  top: calc(100% - 30px);
+  left: calc(100% - 35px);
+  cursor: pointer;
+  path {
+    fill: var(--neutral-color-2);
+  }
+  &:hover path {
+    fill: var(--hover-neutral-color-2);
+  }
 }

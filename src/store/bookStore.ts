@@ -1,11 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import api from '../core/api/api';
 import Book, { BookCreateData } from '../core/types/book';
-import Author from '../core/types/author';
 import ConfirmationStore from './confirmationStore';
-import Review from '../core/types/review';
-import User from '../core/types/user';
-import book from '../core/types/book';
 
 class BookStore {
   private books: Book[] = [];
@@ -32,7 +28,7 @@ class BookStore {
 
   async fetchBooks(): Promise<void> {
     const fetchedBooks = await api.fetchBooks();
-    console.log(fetchedBooks);
+
     if (fetchedBooks !== null) {
       this.books = fetchedBooks;
     }

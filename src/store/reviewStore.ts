@@ -22,6 +22,10 @@ class ReviewStore {
     await api.addReview(book, review);
   }
 
+  async deleteReview(reviewId: number): Promise<void> {
+    await api.deleteReview(reviewId);
+  }
+
   getReviews() {
     return this.reviews;
   }

@@ -281,6 +281,7 @@ class Api implements IApi {
 
   async fetchReviews(bookId: number): Promise<Review[] | null> {
     const token = getCookie('token');
+    console.log(`${REVIEWS_URL}/${bookId}`);
     return await this.fetch('get', `${REVIEWS_URL}/${bookId}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -296,6 +297,15 @@ class Api implements IApi {
       },
       data: {
         ...review,
+      },
+    });
+  }
+
+  async deleteReview(reviewId: number): Promise<void> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${REVIEWS_URL}/${reviewId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
     });
   }
