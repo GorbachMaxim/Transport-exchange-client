@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 interface BookCardProps {
   book: Book;
+  className?: string;
 }
 
 const BookCard = (props: BookCardProps) => {
@@ -13,11 +14,12 @@ const BookCard = (props: BookCardProps) => {
 
   return (
     <div
-      className={styles.bookCard}
+      className={`${styles.bookCard} ${props.className || ''}`}
       onClick={() => navigate(`${BOOKS_ROUTE}/${props.book.id}`)}
     >
       <div className={styles.image}>
         <img src={props.book.image} alt="book cover" />
+        <div className={styles.rating}>Rating: {props.book.avgScore}</div>
       </div>
       <span className={styles.name}>{props.book.name}</span>
       <span className={styles.author}>

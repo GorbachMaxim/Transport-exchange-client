@@ -286,7 +286,7 @@ class Api implements IApi {
   }
 
   async addReview(
-    user: User,
+    // user: User | null,
     book: Book,
     review: Review,
   ): Promise<Review | null> {
@@ -297,12 +297,6 @@ class Api implements IApi {
       },
       data: {
         ...review,
-        user: {
-          ...user,
-        },
-        book: {
-          ...book,
-        },
       },
     });
   }

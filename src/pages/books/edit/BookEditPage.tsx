@@ -35,7 +35,7 @@ const BookEditPage = () => {
 
   return (
     <main className={`${styles.bookEditPage} container page`}>
-      <h2 className={`pageTitle`}>Edit Author</h2>
+      <h2 className={`pageTitle`}>Edit Book</h2>
       {book && <BookEditForm book={book} onSubmit={updateBook} />}
     </main>
   );

@@ -20,7 +20,7 @@ import AuthorCreatePage from './pages/authors/create/AuthorCreatePage';
 import BookCreatePage from './pages/books/create/BookCreatePage';
 import GenresListPage from './pages/genres/genresList/GenresListPage';
 import GenreCreatePage from './pages/genres/create/GenreCreatePage';
-import { LOGIN_ROUTE } from './core/constants/routes';
+import { BOOKS_ROUTE, LOGIN_ROUTE } from './core/constants/routes';
 import Loader from './components/ui/loader/Loader';
 import styles from './App.module.scss';
 import Book from './core/types/book';
@@ -52,7 +52,7 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path={'/'} element={<Navigate to={`${LOGIN_ROUTE}`} />} />
+          <Route path={'/'} element={<Navigate to={`${BOOKS_ROUTE}`} />} />
           <Route path={'books'}>
             <Route index element={<BooksListPage />} />
             <Route path={':bookId'} element={<BookPage />} />

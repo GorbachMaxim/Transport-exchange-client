@@ -1,8 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 import api from '../core/api/api';
-import GptAdvice from '../core/types/gptAdvice';
 import Review from '../core/types/review';
-import User from '../core/types/user';
 import Book from '../core/types/book';
 
 class ReviewStore {
@@ -20,14 +18,8 @@ class ReviewStore {
     }
   }
 
-  async addReview(
-    user: User | null,
-    book: Book,
-    review: Review,
-  ): Promise<void> {
-    if (user !== null) {
-      await api.addReview(user, book, review);
-    }
+  async addReview(book: Book, review: Review): Promise<void> {
+    await api.addReview(book, review);
   }
 
   getReviews() {

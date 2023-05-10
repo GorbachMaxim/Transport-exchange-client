@@ -1,0 +1,10 @@
+@import '../../styles/typography.scss';
+
+.bookCard span {
+  color: var(--secondary-color);
+}
+
+.text {
+  @extend .mainText;
+  margin: 50px 0 0 0;
+}

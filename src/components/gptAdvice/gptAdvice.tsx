@@ -1,6 +1,6 @@
 import React from 'react';
 import BookCard from '../cards/book/BookCard';
-import styles from '../../pages/advice/AdvicePage.module.scss';
+import styles from './gptAdvice.module.scss';
 import { useStore } from '../../context/storeContext';
 import { observer } from 'mobx-react';
 import Typewriter from 'typewriter-effect';
@@ -11,7 +11,10 @@ const GptAdvice = observer(() => {
   return (
     gptStore.getGptAdvice() && (
       <div>
-        <BookCard book={gptStore.getGptAdvice().bookDto} />
+        <BookCard
+          book={gptStore.getGptAdvice().bookDto}
+          className={styles.bookCard}
+        />
         <p className={styles.text}>
           <Typewriter
             options={{

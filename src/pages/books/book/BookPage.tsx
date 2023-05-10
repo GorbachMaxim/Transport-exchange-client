@@ -11,7 +11,7 @@ import {
 } from '../../../core/constants/routes';
 import ReviewList from '../../../components/lists/review/ReviewList';
 import Button from '../../../components/ui/button/Button';
-import { ReactComponent as StarSvg } from '../../../assets/icons/star-icon.svg';
+import { ReactComponent as StarIcon } from '../../../assets/icons/star-icon.svg';
 import ReviewForm from '../../../components/forms/review/ReviewForm';
 import Review, { ReviewCreateData } from '../../../core/types/review';
 import { Link } from 'react-router-dom';
@@ -36,7 +36,7 @@ const BookPage = observer(() => {
 
   const sendReview = async (review: ReviewCreateData) => {
     if (userStore.getUser() !== null) {
-      await reviewStore.addReview(userStore.getUser(), book, review as Review);
+      await reviewStore.addReview(book, review as Review);
       await reviewStore.fetchReviews(book.id);
     }
   };
@@ -70,11 +70,14 @@ const BookPage = observer(() => {
                 <span className={styles.avgScore}>No ratings yet</span>
               )}
               <div className={styles.yourScore}>
-                <StarSvg className={styles.starIcon} />
-                <StarSvg className={styles.starIcon} />
-                <StarSvg className={styles.starIcon} />
-                <StarSvg className={styles.starIcon} />
-                <StarSvg className={styles.starIcon} />
+                {[...new Array(5)].map((_, index) => (
+                  <StarIcon
+                    className={`${styles.starIcon} ${
+                      index < Math.floor(book.avgScore) ? styles.activeStar : ''
+                    }`}
+                    key={index}
+                  />
+                ))}
               </div>
             </div>
             {userStore

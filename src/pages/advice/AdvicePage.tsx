@@ -23,7 +23,11 @@ const AdvicePage = () => {
     >
       <div className={`${styles.advicePage} container page`}>
         <h2 className={`pageTitle`}>ChatGPT advice</h2>
-        <Loader promise={fetchGptAdvice} loaderClassName={styles.loader}>
+        <Loader
+          promise={fetchGptAdvice}
+          loaderClassName={styles.loader}
+          spinnerClassName={styles.spinner}
+        >
           <GptAdvice />
         </Loader>
       </div>
