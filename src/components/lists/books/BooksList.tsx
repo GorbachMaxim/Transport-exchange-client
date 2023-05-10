@@ -3,8 +3,9 @@ import styles from './BooksList.module.scss';
 import Book from '../../../core/types/book';
 import BookCard from '../../cards/book/BookCard';
 import { useStore } from '../../../context/storeContext';
+import { observer } from 'mobx-react';
 
-const BooksList = () => {
+const BooksList = observer(() => {
   const bookStore = useStore('BookStore');
 
   return (
@@ -18,6 +19,6 @@ const BooksList = () => {
       )}
     </ul>
   );
-};
+});
 
 export default BooksList;

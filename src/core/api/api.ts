@@ -8,6 +8,7 @@ import {
   EMAIL_URL,
   GENRES_URL,
   REVIEWS_URL,
+  SEARCH_URL,
   SIGNIN_URL,
   SIGNUP_URL,
   STATISTICS_URL,
@@ -373,6 +374,15 @@ class Api implements IApi {
   async fetchStatistics(): Promise<Statistics[] | null> {
     const token = getCookie('token');
     return await this.fetch('get', STATISTICS_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchSearchBooks(search: string): Promise<Book[] | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', `${SEARCH_URL}/${search}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -4,12 +4,19 @@ import { useStore } from '../../../context/storeContext';
 import BooksList from '../../../components/lists/books/BooksList';
 import { observer } from 'mobx-react';
 import Loader from '../../../components/ui/loader/Loader';
+import { useSearchParams } from 'react-router-dom';
 
 const BooksListPage: FC = observer(() => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const bookStore = useStore('BookStore');
 
   const fetchBooks = new Promise<void>(async (resolve) => {
-    await bookStore.fetchBooks();
+    const search = searchParams.get('search');
+    if (search !== null) {
+      await bookStore.searchBooks(search);
+    } else {
+      await bookStore.fetchBooks();
+    }
     resolve();
   });
 

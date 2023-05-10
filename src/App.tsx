@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/home/HomePage';
 import BooksListPage from './pages/books/booksList/BooksListPage';
 import RegistrationPage from './pages/registration/RegistrationPage';
 import Header from './components/header/Header';
@@ -23,7 +22,6 @@ import GenreCreatePage from './pages/genres/create/GenreCreatePage';
 import { BOOKS_ROUTE, LOGIN_ROUTE } from './core/constants/routes';
 import Loader from './components/ui/loader/Loader';
 import styles from './App.module.scss';
-import Book from './core/types/book';
 import BookEditPage from './pages/books/edit/BookEditPage';
 import Confirmation from './components/confirmation/Confirmation';
 import GenreEditPage from './pages/genres/edit/GenreEditPage';

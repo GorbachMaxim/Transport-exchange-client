@@ -32,7 +32,7 @@ class BookStore {
 
   async fetchBooks(): Promise<void> {
     const fetchedBooks = await api.fetchBooks();
-
+    console.log(fetchedBooks);
     if (fetchedBooks !== null) {
       this.books = fetchedBooks;
     }
@@ -52,6 +52,14 @@ class BookStore {
 
   async updateBook(book: Book): Promise<Book | null> {
     return await api.updateBook(book);
+  }
+
+  async searchBooks(search: string): Promise<void> {
+    const fetchedBooks = await api.fetchSearchBooks(search);
+    console.log(fetchedBooks);
+    if (fetchedBooks !== null) {
+      this.books = fetchedBooks;
+    }
   }
 
   getBooks() {

@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './Header.module.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ReactComponent as AccountIcon } from '../../assets/icons/account-icon.svg';
 import { ReactComponent as OpenaiIcon } from '../../assets/icons/openai-icon.svg';
 import { ReactComponent as WishListIcon } from '../../assets/icons/wishlist-icon.svg';
@@ -12,11 +12,17 @@ import { useStore } from '../../context/storeContext';
 import { observer } from 'mobx-react';
 
 const Header = observer(() => {
+  const [searchString, setSearchString] = useState('');
   const isHeaderShown = useScrollDirection();
   const userStore = useStore('UserStore');
+  const navigate = useNavigate();
 
   const setActiveLink = (active: ActiveLink) =>
     active.isActive ? `${styles.activeLink}` : '';
+
+  const searchBooks = () => {
+    navigate(`books?search=${searchString}`);
+  };
 
   return (
     <header className={`${styles.header} ${isHeaderShown ? '' : styles.hide}`}>
@@ -25,8 +31,13 @@ const Header = observer(() => {
           <Logo />
         </NavLink>
         <div className={styles.searchBar}>
-          <input className={styles.searchInput} placeholder={'Search Books'} />
-          <SearchIcon className={styles.searchIcon} />
+          <input
+            value={searchString}
+            onChange={(event) => setSearchString(event.target.value)}
+            className={styles.searchInput}
+            placeholder={'Search Books'}
+          />
+          <SearchIcon className={styles.searchIcon} onClick={searchBooks} />
         </div>
         <div className={styles.menu}>
           <NavLink to={'/advice'} className={setActiveLink}>

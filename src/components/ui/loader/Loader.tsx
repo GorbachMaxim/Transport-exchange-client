@@ -12,11 +12,8 @@ const Loader = (props: LoaderProps): JSX.Element => {
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   const loading = async () => {
-    // await props.promise;
-    // setIsLoading(false);
-    props.promise.then(() => {
-      setIsLoading(false);
-    });
+    await props.promise;
+    setIsLoading(false);
   };
 
   useEffect(() => {
