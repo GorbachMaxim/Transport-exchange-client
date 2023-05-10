@@ -10,6 +10,7 @@ import {
   REVIEWS_URL,
   SIGNIN_URL,
   SIGNUP_URL,
+  STATISTICS_URL,
   USERS_URL,
 } from '../constants/apiConstants';
 import User, { AuthData, UpdatePassword, UserApiResponse } from '../types/user';
@@ -21,6 +22,7 @@ import Genre, { GenreCreateData } from '../types/genre';
 import GptAdvice from '../types/gptAdvice';
 import Review from '../types/review';
 import Apod from '../types/apod';
+import Statistics from '../types/statistics';
 
 type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
@@ -285,11 +287,7 @@ class Api implements IApi {
     });
   }
 
-  async addReview(
-    // user: User | null,
-    book: Book,
-    review: Review,
-  ): Promise<Review | null> {
+  async addReview(book: Book, review: Review): Promise<Review | null> {
     const token = getCookie('token');
     return await this.fetch('post', `${REVIEWS_URL}/${book.id}`, {
       headers: {
@@ -366,6 +364,15 @@ class Api implements IApi {
   async fetchApod(): Promise<Apod | null> {
     const token = getCookie('token');
     return await this.fetch('get', APOD_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchStatistics(): Promise<Statistics[] | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', STATISTICS_URL, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

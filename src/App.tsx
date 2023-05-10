@@ -32,6 +32,7 @@ import BookPage from './pages/books/book/BookPage';
 import UserEditPage from './pages/user/edit/UserEditPage';
 import AdvicePage from './pages/advice/AdvicePage';
 import ReadBooksPage from './pages/readBooks/ReadBooksPage';
+import Statistics from './pages/account/menu/statistics/Statistics';
 
 function App() {
   const userStore = useStore('UserStore');
@@ -85,6 +86,7 @@ function App() {
             <Route path={'/account/authors'} element={<Authors />} />
             <Route path={'/account/genres'} element={<Genres />} />
             <Route path={'/account/users'} element={<Users />} />
+            <Route path={'/account/statistics'} element={<Statistics />} />
           </Route>
         </Routes>
         <Footer />

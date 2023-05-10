@@ -7,6 +7,7 @@ import { ReactComponent as AuthorIcon } from '../../assets/icons/person-circle-i
 import { ReactComponent as GenreIcon } from '../../assets/icons/bookmark-icon.svg';
 import { ReactComponent as UsersIcon } from '../../assets/icons/people-icon.svg';
 import { ReactComponent as LogoutIcon } from '../../assets/icons/logout-icon.svg';
+import { ReactComponent as StatisticsIcon } from '../../assets/icons/statistics-icon.svg';
 import ActiveLink from '../../core/types/activeLink';
 import { useStore } from '../../context/storeContext';
 import { HOME_ROUTE } from '../../core/constants/routes';
@@ -73,6 +74,14 @@ const AccountPage = observer(() => {
             <NavLink to={'/account/users'} className={setActiveLink}>
               <UsersIcon className={styles.icon} />
               <span>Users</span>
+            </NavLink>
+          </li>
+        </AvailableFor>
+        <AvailableFor roles={['ROLE_ADMIN']}>
+          <li>
+            <NavLink to={'/account/statistics'} className={setActiveLink}>
+              <StatisticsIcon className={styles.icon} />
+              <span>Statistics</span>
             </NavLink>
           </li>
         </AvailableFor>

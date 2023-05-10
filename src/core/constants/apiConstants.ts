@@ -10,3 +10,4 @@ export const CHATGPT_URL = '/api/chatGPT';
 export const APOD_URL = '/api/apod';
 export const REVIEWS_URL = '/api/review';
 export const EMAIL_URL = '/api/email';
+export const STATISTICS_URL = '/api/statistic';
