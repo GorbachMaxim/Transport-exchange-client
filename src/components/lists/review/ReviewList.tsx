@@ -7,7 +7,7 @@ import { useStore } from '../../../context/storeContext';
 import { observer } from 'mobx-react';
 
 interface ReviewListProps {
-  bookId: number;
+  companyId: number;
 }
 
 const ReviewList = observer((props: ReviewListProps) => {
@@ -15,11 +15,11 @@ const ReviewList = observer((props: ReviewListProps) => {
 
   const deleteReview = async (review: Review) => {
     await reviewStore.deleteReview(review.id);
-    await reviewStore.fetchReviews(props.bookId);
+    await reviewStore.fetchReviews(props.companyId);
   };
 
   const fetchReviews = async () => {
-    await reviewStore.fetchReviews(props.bookId);
+    await reviewStore.fetchReviews(props.companyId);
   };
 
   useEffect(() => {
@@ -40,7 +40,7 @@ const ReviewList = observer((props: ReviewListProps) => {
           ))
           .reverse()
       ) : (
-        <div>There are no reviews yet</div>
+        <div>Нет обзоров</div>
       )}
     </div>
   );

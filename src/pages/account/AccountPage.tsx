@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import styles from './AccountPage.module.scss';
 import { ReactComponent as OverviewIcon } from '../../assets/icons/account-icon.svg';
-import { ReactComponent as BookIcon } from '../../assets/icons/book-icon.svg';
-import { ReactComponent as AuthorIcon } from '../../assets/icons/person-circle-icon.svg';
-import { ReactComponent as GenreIcon } from '../../assets/icons/bookmark-icon.svg';
+import { ReactComponent as CompanyIcon } from '../../assets/icons/company-icon.svg';
+import { ReactComponent as CarIcon } from '../../assets/icons/truck-icon.svg';
+import { ReactComponent as CargoIcon } from '../../assets/icons/box-icon.svg';
 import { ReactComponent as UsersIcon } from '../../assets/icons/people-icon.svg';
 import { ReactComponent as LogoutIcon } from '../../assets/icons/logout-icon.svg';
 import { ReactComponent as StatisticsIcon } from '../../assets/icons/statistics-icon.svg';
@@ -42,30 +42,30 @@ const AccountPage = observer(() => {
         <li>
           <NavLink to={'/account/overview'} className={setActiveLink}>
             <OverviewIcon className={styles.icon} />
-            <span>Account overview</span>
+            <span>Об аккаунте</span>
           </NavLink>
         </li>
         <AvailableFor roles={['ROLE_ADMIN']}>
           <li>
-            <NavLink to={'/account/books'} className={setActiveLink}>
-              <BookIcon className={styles.icon} />
-              <span>Books</span>
+            <NavLink to={'/account/companies'} className={setActiveLink}>
+              <CompanyIcon className={styles.icon} />
+              <span>Компании</span>
             </NavLink>
           </li>
         </AvailableFor>
         <AvailableFor roles={['ROLE_ADMIN']}>
           <li>
-            <NavLink to={'/account/authors'} className={setActiveLink}>
-              <AuthorIcon className={styles.icon} />
-              <span>Authors</span>
+            <NavLink to={'/account/car_offers'} className={setActiveLink}>
+              <CarIcon className={styles.icon} />
+              <span>Машины</span>
             </NavLink>
           </li>
         </AvailableFor>
         <AvailableFor roles={['ROLE_ADMIN']}>
           <li>
-            <NavLink to={'/account/genres'} className={setActiveLink}>
-              <GenreIcon className={styles.icon} />
-              <span>Genres</span>
+            <NavLink to={'/account/cargo_offers'} className={setActiveLink}>
+              <CargoIcon className={styles.icon} />
+              <span>Грузы</span>
             </NavLink>
           </li>
         </AvailableFor>
@@ -73,7 +73,7 @@ const AccountPage = observer(() => {
           <li>
             <NavLink to={'/account/users'} className={setActiveLink}>
               <UsersIcon className={styles.icon} />
-              <span>Users</span>
+              <span>Пользователи</span>
             </NavLink>
           </li>
         </AvailableFor>
@@ -81,7 +81,7 @@ const AccountPage = observer(() => {
           <li>
             <NavLink to={'/account/statistics'} className={setActiveLink}>
               <StatisticsIcon className={styles.icon} />
-              <span>Statistics</span>
+              <span>Статистика компаний</span>
             </NavLink>
           </li>
         </AvailableFor>
@@ -91,7 +91,7 @@ const AccountPage = observer(() => {
             onClick={logout}
           >
             <LogoutIcon className={styles.icon} />
-            <span>Logout</span>
+            <span>Выйти</span>
           </button>
         </li>
       </ul>

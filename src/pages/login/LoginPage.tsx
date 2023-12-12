@@ -5,7 +5,7 @@ import Input from '../../components/ui/input/Input';
 import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../../components/ui/button/Button';
 import { useStore } from '../../context/storeContext';
-import { ACCOUNT_ROUTE, BOOKS_ROUTE } from '../../core/constants/routes';
+import { ACCOUNT_ROUTE, COMPANIES_ROUTE } from '../../core/constants/routes';
 import LoginForm from '../../components/forms/login/LoginForm';
 
 const LoginPage = () => {
@@ -13,21 +13,21 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   const onSubmit = async (user: AuthData) => {
-    await userStore.singIn(user);
+    await userStore.signIn(user);
     if (userStore.getUser()) {
-      navigate(BOOKS_ROUTE);
+      navigate(COMPANIES_ROUTE);
     }
   };
 
   return (
     <main className={`${styles.loginPage} container`}>
       <div className={styles.login}>
-        <h2 className={styles.title}>Login</h2>
-        <p className={styles.caption}>Please enter your login and password:</p>
+        <h2 className={styles.title}>Войти</h2>
+        <p className={styles.caption}>Введите ваш логин и пароль:</p>
         <LoginForm onSubmit={onSubmit} />
         <div className={styles.create}>
-          <span>{"Don't have an account? "}</span>
-          <NavLink to="/registration">Create one</NavLink>
+          <span>{'Еще нет аккаунта? '}</span>
+          <NavLink to="/registration">Создать</NavLink>
         </div>
       </div>
     </main>

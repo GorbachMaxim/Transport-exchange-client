@@ -1,0 +1,47 @@
+.form {
+  max-width: 100%;
+}
+
+.head {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  top: 12px;
+}
+
+.yourScore {
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.starIcon {
+  width: 25px;
+  height: 25px;
+  padding: 0 5px;
+  cursor: pointer;
+  path {
+    fill: var(--text-color-600);
+  }
+  &:hover {
+    path {
+      fill: var(--neutral-color-2);
+    }
+    & ~ svg path {
+      fill: var(--neutral-color-2);
+    }
+  }
+}
+
+.activeStar {
+  path {
+    fill: var(--neutral-color-2);
+  }
+}
+
+.error {
+  position: relative;
+  color: var(--neutral-color-2);
+  top: -10px;
+}

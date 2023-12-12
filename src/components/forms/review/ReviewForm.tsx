@@ -4,10 +4,10 @@ import Form from '../../form/Form';
 import { TextArea } from '../../ui/textArea/TextArea';
 import Button from '../../ui/button/Button';
 import { ReactComponent as StarIcon } from '../../../assets/icons/star-icon.svg';
-import Review, { ReviewCreateData } from '../../../core/types/review';
+import Review, { CommentCreateData } from '../../../core/types/review';
 
 interface ReviewFormProps {
-  onSubmit: (review: ReviewCreateData) => void;
+  onSubmit: (review: CommentCreateData) => void;
 }
 
 const ReviewForm = (props: ReviewFormProps) => {
@@ -25,7 +25,7 @@ const ReviewForm = (props: ReviewFormProps) => {
       return;
     }
 
-    const review: ReviewCreateData = {
+    const review: CommentCreateData = {
       mark,
       text,
     };
@@ -38,7 +38,7 @@ const ReviewForm = (props: ReviewFormProps) => {
   return (
     <Form className={styles.form}>
       <div className={styles.head}>
-        <h4>Your review</h4>
+        <h4>Ваш отзыв</h4>
         <div className={styles.yourScore}>
           {[...new Array(5)].map((_, index) => (
             <StarIcon
@@ -53,10 +53,10 @@ const ReviewForm = (props: ReviewFormProps) => {
       </div>
       <TextArea value={text} className={styles.textArea} onChange={setText} />
       <div className={styles.error}>
-        {isError && <span>You have to rate it!</span>}
+        {isError && <span>Вы должны оценить компанию!</span>}
       </div>
       <Button className={styles.button} onClick={onSubmit} type={'primary'}>
-        Send review
+        Отравить обзор
       </Button>
     </Form>
   );

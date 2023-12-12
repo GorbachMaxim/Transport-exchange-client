@@ -1,5 +1,5 @@
 interface Statistics {
-  author: string;
+  company: string;
   points: number;
 }
 

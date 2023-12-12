@@ -15,8 +15,7 @@ const Footer = () => {
           <div className={styles.follow}>
             <Logo className={styles.logo} />
             <p className={styles.caption}>
-              Subscribe to our social networks and receive news about our
-              releases
+              Подписывайтесь на наши социальный сети
             </p>
             <ul className={styles.social}>
               <li className={styles.socialLink}>
@@ -45,13 +44,13 @@ const Footer = () => {
             <h4 className={styles.title}>About</h4>
             <ul className={styles.list}>
               <li className={styles.listItem}>
-                <Link to={'/home'}>Home</Link>
+                <Link to={'/car_offers'}>Машины</Link>
               </li>
               <li className={styles.listItem}>
-                <Link to={'/authors'}>Authors</Link>
+                <Link to={'/cargo_offers'}>Грузы</Link>
               </li>
               <li className={styles.listItem}>
-                <Link to={'/genres'}>Genres</Link>
+                <Link to={'/companies'}>Компании</Link>
               </li>
             </ul>
           </div>
@@ -59,16 +58,13 @@ const Footer = () => {
             <h4 className={styles.title}>Contacts</h4>
             <ul className={styles.list}>
               <li className={styles.listItem}>
-                <Link to={'/account'}>Account</Link>
-              </li>
-              <li className={styles.listItem}>
-                <Link to={'/contacts'}>Contact us</Link>
+                <Link to={'/account'}>Аккаунт</Link>
               </li>
             </ul>
           </div>
         </div>
         <div className={styles.rights}>
-          <div>&copy; All Rights Reserved, 2023</div>
+          <div>&copy; Все права защищены, 2023</div>
           <div>
             <span className={styles.privacy}>Privacy</span> | Terms of Service
           </div>

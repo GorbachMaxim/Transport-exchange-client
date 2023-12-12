@@ -20,7 +20,7 @@ const Statistics = () => {
 
   return (
     <section className={styles.overview}>
-      <h2 className={`accountPageTitle`}>Chart</h2>
+      <h2 className={`accountPageTitle`}>График</h2>
       {statistics && <Chart statistics={statistics} />}
     </section>
   );

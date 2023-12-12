@@ -11,7 +11,7 @@
   padding: 5px;
 }
 
-.authorItem {
+.item {
   display: flex;
   align-items: center;
   margin: 0 0 5px 0;
@@ -23,28 +23,28 @@
 }
 
 .indexHeader,
-.authorIndex {
+.index {
   display: flex;
   width: 100px;
   align-items: center;
 }
 
 .nameHeader,
-.authorName {
+.name {
   display: flex;
   width: 320px;
   align-items: center;
 }
 
 .idHeader,
-.authorId {
+.id {
   display: flex;
   width: 100px;
   align-items: center;
 }
 
 .emailHeader,
-.authorEmail {
+.email {
   display: flex;
   width: 260px;
   align-items: center;

@@ -1,0 +1,113 @@
+@import 'src/styles/typography';
+
+.companyPage {
+  @extend .mainText;
+}
+
+.content {
+  display: flex;
+}
+
+.image {
+  width: 300px;
+  height: 300px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.sidePanel {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px 0 0;
+}
+
+.text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit {
+  align-self: center;
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.add {
+  align-self: center;
+
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.name {
+  margin: 0 0 10px 0;
+}
+
+.number {
+  margin: 0 0 10px 0;
+}
+
+.email {
+  margin: 0 0 10px 0;
+}
+
+.description {
+  margin: 0 0 30px 0;
+  flex: 1;
+}
+
+.review {
+  margin: 50px 0;
+  h2 {
+    margin: 0 0 10px;
+  }
+}
+
+.notVerified {
+  color: var(--neutral-color-2);
+}
+
+.verifyLink {
+  margin: 0 0 0 10px;
+  color: var(--neutral-color-1);
+  &:hover {
+    color: var(--hover-neutral-color-1);
+  }
+}
+
+.rating {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.yourScore {
+  display: flex;
+  align-items: center;
+}
+
+.starIcon {
+  width: 25px;
+  height: 25px;
+  padding: 0 5px;
+  path {
+    fill: var(--text-color-600);
+  }
+}
+
+.activeStar {
+  path {
+    fill: var(--neutral-color-2);
+  }
+}

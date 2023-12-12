@@ -1,29 +1,32 @@
 import {
   ACCOUNT_URL,
-  APOD_URL,
-  AUTHORS_URL,
   BASE_URL,
-  BOOKS_URL,
-  CHATGPT_URL,
   EMAIL_URL,
-  GENRES_URL,
   REVIEWS_URL,
-  SEARCH_URL,
+  COMMENTS_URL,
   SIGNIN_URL,
   SIGNUP_URL,
-  STATISTICS_URL,
   USERS_URL,
+  CAR_OFFERS_URL,
+  CARGO_OFFERS_URL,
+  COMPANIES_URL,
+  MY_COMPANY_URL,
+  CITIES_URL,
+  STATISTICS_URL,
+  SEARCH_URL,
 } from '../constants/apiConstants';
 import User, { AuthData, UpdatePassword, UserApiResponse } from '../types/user';
 import axios from 'axios';
 import { getCookie } from '../utils/cookie';
-import Author from '../types/author';
-import Book, { BookCreateData } from '../types/book';
-import Genre, { GenreCreateData } from '../types/genre';
-import GptAdvice from '../types/gptAdvice';
-import Review from '../types/review';
-import Apod from '../types/apod';
+
 import Statistics from '../types/statistics';
+
+import Company, { CompanyCreateData } from '../types/company';
+import CarOffer, { CarOfferCreateData } from '../types/carOffer';
+import CargoOffer, { CargoOfferCreateData } from '../types/cargoOffer';
+
+import Review from '../types/review';
+import Comment from '../types/comment';
 
 type RequestMethod = 'get' | 'post' | 'put' | 'delete';
 
@@ -35,9 +38,6 @@ interface IApi {
   ) => Promise<any>;
   signUp: (user: AuthData) => Promise<UserApiResponse | null>;
   signIn: (user: AuthData) => Promise<UserApiResponse | null>;
-  // signIn: (user: User) => Promise<UserApiResponse | null>;
-  fetchAuthors: () => Promise<Author[] | null>;
-  fetchAuthorById: (id: number) => Promise<Author | null>;
 }
 
 class Api implements IApi {
@@ -143,155 +143,236 @@ class Api implements IApi {
     });
   }
 
-  async addReadBook(book: Book): Promise<void> {
+  async fetchCities(): Promise<Company[] | null> {
     const token = getCookie('token');
-    await this.fetch('put', `${USERS_URL}/readbook/${book.id}`, {
+    return await this.fetch('get', CITIES_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchCompanies(): Promise<Company[] | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', COMPANIES_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchCompanyById(id: number): Promise<Company | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', `${COMPANIES_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchMyCompany(): Promise<Company | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', `${MY_COMPANY_URL}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async deleteMyCompany(): Promise<void | null> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${MY_COMPANY_URL}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async deleteCompanyById(id: number): Promise<void | null> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${COMPANIES_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async createMyCompany(company: CompanyCreateData): Promise<void> {
+    const token = getCookie('token');
+    await this.fetch('post', `${MY_COMPANY_URL}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       data: {
-        ...book,
+        ...company,
       },
     });
   }
 
-  async removeReadBook(book: Book): Promise<void> {
+  async updateMyCompany(company: Company): Promise<Company | null> {
     const token = getCookie('token');
-    await this.fetch('delete', `${USERS_URL}/readbook/${book.id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async fetchReadBooks(userId: number): Promise<Book[] | null> {
-    const token = getCookie('token');
-    return await this.fetch<Book[]>('get', `/api/readbook/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async fetchAuthors(): Promise<Author[] | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', AUTHORS_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async fetchAuthorById(id: number): Promise<Author | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', `${AUTHORS_URL}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async updateAuthor(author: Author): Promise<Author | null> {
-    const token = getCookie('token');
-    const response = await this.fetch<Author>('put', AUTHORS_URL, {
+    const response = await this.fetch<Company>('put', MY_COMPANY_URL, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       data: {
-        ...author,
+        ...company,
       },
     });
 
     return response;
   }
 
-  async deleteAuthorById(id: number): Promise<void | null> {
+  async fetchCarOffers(): Promise<CarOffer[] | null> {
     const token = getCookie('token');
-    await this.fetch('delete', `${AUTHORS_URL}/${id}`, {
+    return await this.fetch('get', CAR_OFFERS_URL, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
   }
 
-  async createAuthor(author: Author): Promise<void> {
+  async fetchCarOfferById(id: number): Promise<CarOffer | null> {
     const token = getCookie('token');
-    await this.fetch('post', `${AUTHORS_URL}`, {
+    return await this.fetch('get', `${CAR_OFFERS_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async updateCarOffer(carOffer: CarOffer): Promise<CarOffer | null> {
+    const token = getCookie('token');
+    const response = await this.fetch<CarOffer>('put', CAR_OFFERS_URL, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
       data: {
-        ...author,
-      },
-    });
-  }
-
-  async fetchBooks(): Promise<Book[] | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', BOOKS_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async createBook(book: BookCreateData): Promise<Book | null> {
-    const token = getCookie('token');
-    return await this.fetch('post', BOOKS_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: {
-        ...book,
-      },
-    });
-  }
-
-  async deleteBookById(id: number): Promise<void | null> {
-    const token = getCookie('token');
-    await this.fetch('delete', `${BOOKS_URL}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async fetchBookById(id: number): Promise<Book | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', `${BOOKS_URL}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async updateBook(book: Book): Promise<Book | null> {
-    const token = getCookie('token');
-    const response = await this.fetch<Book>('put', BOOKS_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: {
-        ...book,
+        ...carOffer,
       },
     });
 
     return response;
   }
 
-  async fetchReviews(bookId: number): Promise<Review[] | null> {
+  async deleteCarOfferById(id: number): Promise<void | null> {
     const token = getCookie('token');
-    console.log(`${REVIEWS_URL}/${bookId}`);
-    return await this.fetch('get', `${REVIEWS_URL}/${bookId}`, {
+    await this.fetch('delete', `${CAR_OFFERS_URL}/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
   }
 
-  async addReview(book: Book, review: Review): Promise<Review | null> {
+  async createCarOffer(carOffer: CarOfferCreateData): Promise<void> {
     const token = getCookie('token');
-    return await this.fetch('post', `${REVIEWS_URL}/${book.id}`, {
+    await this.fetch('post', `${CAR_OFFERS_URL}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...carOffer,
+      },
+    });
+  }
+
+  async fetchCargoOffers(): Promise<CargoOffer[] | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', CARGO_OFFERS_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchCargoOfferById(id: number): Promise<CargoOffer | null> {
+    const token = getCookie('token');
+    return await this.fetch('get', `${CARGO_OFFERS_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async updateCargoOffer(cargoOffer: CargoOffer): Promise<CargoOffer | null> {
+    const token = getCookie('token');
+    const response = await this.fetch<CargoOffer>('put', CARGO_OFFERS_URL, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...cargoOffer,
+      },
+    });
+
+    return response;
+  }
+
+  async deleteCargoOfferById(id: number): Promise<void | null> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${CARGO_OFFERS_URL}/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async createCargoOffer(cargoOffer: CargoOfferCreateData): Promise<void> {
+    const token = getCookie('token');
+    await this.fetch('post', `${CARGO_OFFERS_URL}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...cargoOffer,
+      },
+    });
+  }
+
+  async fetchComments(offerId: number): Promise<Comment[] | null> {
+    const token = getCookie('token');
+    console.log(`${COMMENTS_URL}/${offerId}`);
+    return await this.fetch('get', `${COMMENTS_URL}/${offerId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async addComment(offerId: number, comment: Comment): Promise<Comment | null> {
+    const token = getCookie('token');
+    return await this.fetch('post', `${COMMENTS_URL}/${offerId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      data: {
+        ...comment,
+      },
+    });
+  }
+
+  async deleteComment(commentId: number): Promise<void> {
+    const token = getCookie('token');
+    await this.fetch('delete', `${COMMENTS_URL}/${commentId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async fetchReviews(companyId: number): Promise<Review[] | null> {
+    const token = getCookie('token');
+    console.log(`${REVIEWS_URL}/${companyId}`);
+    return await this.fetch('get', `${REVIEWS_URL}/${companyId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
+
+  async addReview(company: Company, review: Review): Promise<Review | null> {
+    const token = getCookie('token');
+    return await this.fetch('post', `${REVIEWS_URL}/${company.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -310,77 +391,6 @@ class Api implements IApi {
     });
   }
 
-  async fetchGenres(): Promise<Genre[] | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', GENRES_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async fetchGenreById(id: number): Promise<Genre | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', `${GENRES_URL}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async createGenre(genre: Genre): Promise<Genre | null> {
-    const token = getCookie('token');
-    return await this.fetch('post', GENRES_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: {
-        ...genre,
-      },
-    });
-  }
-
-  async deleteGenreById(id: number): Promise<void | null> {
-    const token = getCookie('token');
-    await this.fetch('delete', `${GENRES_URL}/${id}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async updateGenre(genre: Genre): Promise<Genre | null> {
-    const token = getCookie('token');
-    const response = await this.fetch<Genre>('put', `${GENRES_URL}/user`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      data: {
-        ...genre,
-      },
-    });
-
-    return response;
-  }
-
-  async getGPTAdvice(): Promise<GptAdvice | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', CHATGPT_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
-  async fetchApod(): Promise<Apod | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', APOD_URL, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
-
   async fetchStatistics(): Promise<Statistics[] | null> {
     const token = getCookie('token');
     return await this.fetch('get', STATISTICS_URL, {
@@ -390,14 +400,14 @@ class Api implements IApi {
     });
   }
 
-  async fetchSearchBooks(search: string): Promise<Book[] | null> {
-    const token = getCookie('token');
-    return await this.fetch('get', `${SEARCH_URL}/${search}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-  }
+  // async fetchSearchBooks(search: string): Promise<Book[] | null> {
+  //   const token = getCookie('token');
+  //   return await this.fetch('get', `${SEARCH_URL}/${search}`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  // }
 }
 
 const api = new Api();

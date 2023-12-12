@@ -33,21 +33,21 @@ const Chart = (props: ChartProps) => {
       },
       title: {
         display: true,
-        text: 'Authors rating',
+        text: 'Рейтинг компаний',
       },
     },
   };
 
-  const labels = props.statistics.map((item) => item.author);
+  const labels = props.statistics.map((item) => item.company);
   const points = props.statistics.map((item) => item.points);
 
   const data = {
     labels,
     datasets: [
       {
-        label: 'author points',
+        label: 'Рейтинг',
         data: points,
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: 'rgba(251, 192, 147, 0.9)',
       },
     ],
   };

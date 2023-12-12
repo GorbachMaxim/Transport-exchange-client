@@ -35,7 +35,7 @@ const UserEditPage = () => {
 
   return (
     <main className={`${styles.userEditPage} container page`}>
-      <h2 className={`pageTitle`}>Edit User</h2>
+      <h2 className={`pageTitle`}>Изменить юзера</h2>
       {user && <UserEditForm user={user} onSubmit={updatePasswords} />}
     </main>
   );

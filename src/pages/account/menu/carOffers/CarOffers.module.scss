@@ -1,0 +1,89 @@
+@import '../../../../styles/typography.scss';
+
+.main {
+  @extend .mainText;
+}
+
+.headers {
+  display: flex;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  padding: 5px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin: 0 0 5px 0;
+  padding: 5px;
+  &:hover {
+    background-color: var(--hover-neutral-color-1);
+    color: var(--secondary-color);
+  }
+}
+
+.indexHeader,
+.index {
+  display: flex;
+  width: 100px;
+  align-items: center;
+}
+
+.nameHeader,
+.name {
+  display: flex;
+  width: 300px;
+  align-items: center;
+}
+
+.idHeader,
+.id {
+  display: flex;
+  width: 100px;
+  align-items: center;
+}
+
+.companyHeader,
+.company {
+  display: flex;
+  width: 300px;
+  align-items: center;
+}
+
+.editBtn {
+  margin: 0 60px 0 30px;
+  cursor: pointer;
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--neutral-color-1);
+  }
+  &:hover svg {
+    fill: var(--secondary-color);
+  }
+}
+
+.deleteBtn {
+  cursor: pointer;
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: var(--neutral-color-2);
+  }
+  &:hover svg {
+    fill: var(--hover-neutral-color-2);
+  }
+}
+
+.createBtn {
+  padding: 10px 15px;
+  margin: 0 0 0 30px;
+}
+
+.arrowBtn {
+  display: block;
+  width: 24px;
+  height: 24px;
+  margin: 0 0 0 10px;
+  cursor: pointer;
+}

@@ -1,7 +1,8 @@
 import { makeAutoObservable } from 'mobx';
 
 class ConfirmationStore {
-  isActive = false;
+  isActiveConfirmation = false;
+  isActiveWarning = false;
   title: string = '';
   text: string = '';
   onConfirm: () => void = null!;
@@ -11,17 +12,24 @@ class ConfirmationStore {
   }
 
   show(title: string, text: string, onConfirm: () => void): void {
+    this.isActiveConfirmation = true;
     this.title = title;
     this.text = text;
     this.onConfirm = onConfirm;
-    this.isActive = true;
+  }
+
+  showWarning(title: string): void {
+    this.isActiveWarning = true;
+    this.title = title;
+    this.text = '';
   }
 
   close(): void {
+    this.isActiveConfirmation = false;
+    this.isActiveWarning = false;
     this.title = '';
     this.text = '';
     this.onConfirm = null!;
-    this.isActive = false;
   }
 }
 

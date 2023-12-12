@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import api from '../core/api/api';
 import Review from '../core/types/review';
-import Book from '../core/types/book';
+import Company from '../core/types/company';
 
 class ReviewStore {
   private reviews: Review[] = null!;
@@ -10,16 +10,16 @@ class ReviewStore {
     makeAutoObservable(this);
   }
 
-  async fetchReviews(bookId: number): Promise<void> {
-    const reviews = await api.fetchReviews(bookId);
+  async fetchReviews(companyId: number): Promise<void> {
+    const reviews = await api.fetchReviews(companyId);
 
     if (reviews !== null) {
       this.reviews = reviews;
     }
   }
 
-  async addReview(book: Book, review: Review): Promise<void> {
-    await api.addReview(book, review);
+  async addReview(company: Company, review: Review): Promise<void> {
+    await api.addReview(company, review);
   }
 
   async deleteReview(reviewId: number): Promise<void> {

@@ -1,0 +1,50 @@
+.card {
+  position: relative;
+  margin: 0 0 10px 0;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: var(--text-color-300);
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  span {
+    font-size: 14px;
+    color: var(--neutral-color-1);
+  }
+}
+
+.starIcon {
+  width: 25px;
+  height: 25px;
+  padding: 0 5px;
+  path {
+    fill: var(--text-color-600);
+  }
+}
+
+.activeStar {
+  path {
+    fill: var(--neutral-color-2);
+  }
+}
+
+.text {
+  margin: 10px 0 0 0;
+  padding: 0 0 5px 0;
+  font-size: 17px;
+}
+
+.deleteIcon {
+  position: absolute;
+  top: calc(100% - 30px);
+  left: calc(100% - 35px);
+  cursor: pointer;
+  path {
+    fill: var(--neutral-color-2);
+  }
+  &:hover path {
+    fill: var(--hover-neutral-color-2);
+  }
+}

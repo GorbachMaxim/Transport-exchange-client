@@ -5,6 +5,7 @@ import { ReactComponent as StarIcon } from '../../../assets/icons/star-icon.svg'
 import { ReactComponent as DeleteIcon } from '../../../assets/icons/delete-icon.svg';
 import { observer } from 'mobx-react';
 import { useStore } from '../../../context/storeContext';
+import AvailableFor from '../../availableFor/AvailableFor';
 
 interface ReviewCardProps {
   review: Review;
@@ -34,8 +35,12 @@ const ReviewCard = observer((props: ReviewCardProps) => {
         </div>
       </div>
       <p className={styles.text}>{props.review.text}</p>
-      {userStore.getUser()?.username === props.review.user.username && (
+      {userStore.getUser()?.username === props.review.user.username ? (
         <DeleteIcon className={styles.deleteIcon} onClick={deleteReview} />
+      ) : (
+        <AvailableFor roles={['ROLE_ADMIN']}>
+          <DeleteIcon className={styles.deleteIcon} onClick={deleteReview} />
+        </AvailableFor>
       )}
     </div>
   );

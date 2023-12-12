@@ -29,7 +29,10 @@ const Modal = observer((): JSX.Element => {
       data-testid="overlay"
       ref={overlay}
       className={`${styles.overlay} ${
-        confirmationStore.isActive ? '' : styles.close
+        confirmationStore.isActiveConfirmation ||
+        confirmationStore.isActiveWarning
+          ? ''
+          : styles.close
       }`}
       onClick={(event) => onClickOutside(event.target)}
     >
@@ -39,19 +42,29 @@ const Modal = observer((): JSX.Element => {
         </button>
         <span className={styles.title}>{confirmationStore.title}</span>
         <span className={styles.text}>{confirmationStore.text}</span>
-        <div className={styles.buttons} data-testid="buttons">
-          <Button onClick={close} type="secondary" className={styles.cancelBtn}>
-            No
+        {confirmationStore.isActiveConfirmation ? (
+          <div className={styles.buttons} data-testid="buttons">
+            <Button
+              onClick={close}
+              type="secondary"
+              className={styles.cancelBtn}
+            >
+              Нет
+            </Button>
+            <Button
+              onClick={confirm}
+              type="primary"
+              className={styles.confirmBtn}
+              data-testid="confirmBtn"
+            >
+              Да
+            </Button>
+          </div>
+        ) : (
+          <Button onClick={close} type="primary" className={styles.okBtn}>
+            Ок
           </Button>
-          <Button
-            onClick={confirm}
-            type="primary"
-            className={styles.confirmBtn}
-            data-testid="confirmBtn"
-          >
-            Yes
-          </Button>
-        </div>
+        )}
       </div>
     </div>
   );

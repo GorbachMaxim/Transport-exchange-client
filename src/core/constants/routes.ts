@@ -1,9 +1,9 @@
 export const HOME_ROUTE = '/';
-export const BOOKS_ROUTE = '/books';
-export const AUTHORS_ROUTE = '/authors';
-export const GENRES_ROUTE = '/genres';
+export const CAR_OFFERS_ROUTE = '/car_offers';
+export const CARGO_OFFERS_ROUTE = '/cargo_offers';
+export const COMPANIES_ROUTE = '/companies';
+export const MY_COMPANY_ROUTE = '/my_company';
 export const USERS_ROUTE = '/user';
 export const REGISTRATION_ROUTE = '/registration';
 export const LOGIN_ROUTE = '/login';
 export const ACCOUNT_ROUTE = '/account';
-export const READBOOKS_ROUTE = '/readbooks';

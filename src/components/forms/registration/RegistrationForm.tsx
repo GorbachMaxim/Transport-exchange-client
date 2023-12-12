@@ -29,7 +29,7 @@ const RegistrationForm = (props: RegistrationFormProps) => {
         onChange={setUsername}
         type="text"
         className={styles.input}
-        placeholder={'Username'}
+        placeholder={'Имя пользователя'}
       />
       <Input
         onChange={setEmail}
@@ -41,16 +41,16 @@ const RegistrationForm = (props: RegistrationFormProps) => {
         onChange={setPassword}
         type="password"
         className={styles.input}
-        placeholder={'Password'}
+        placeholder={'Пароль'}
       />
       <Input
         onChange={setPassword}
         type="password"
         className={styles.input}
-        placeholder={'Confirm password'}
+        placeholder={'Подтвердите пароль'}
       />
       <Button type="primary" onClick={onSubmit}>
-        Create Account
+        Создать аккаунт
       </Button>
     </Form>
   );

@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import styles from './Users.module.scss';
 import { useStore } from '../../../../context/storeContext';
 import { useNavigate } from 'react-router-dom';
-import { GENRES_ROUTE, USERS_ROUTE } from '../../../../core/constants/routes';
+import { USERS_ROUTE } from '../../../../core/constants/routes';
 import { observer } from 'mobx-react';
 import { ReactComponent as EditIcon } from '../../../../assets/icons/edit-icon.svg';
 import { ReactComponent as DeleteIcon } from '../../../../assets/icons/delete-icon.svg';
@@ -31,14 +31,14 @@ const Users = observer(() => {
 
   return (
     <section className={styles.clients}>
-      <h2 className={`accountPageTitle`}>Users</h2>
+      <h2 className={`accountPageTitle`}>Пользователи</h2>
       <ul className={styles.authorsList}>
         <li className={styles.headers}>
           <div className={styles.indexHeader}>
             <span>#</span>
           </div>
           <div className={styles.nameHeader}>
-            <span>name</span>
+            <span>Имя</span>
           </div>
           <div className={styles.emailHeader}>
             <span>email</span>
@@ -49,11 +49,11 @@ const Users = observer(() => {
         </li>
         {clientStore.getClients().length > 0 ? (
           clientStore.getClients().map((client, index) => (
-            <li className={styles.authorItem} key={client.id}>
-              <span className={styles.authorIndex}>{index + 1}</span>
-              <span className={styles.authorName}>{client.username}</span>
-              <span className={styles.authorEmail}>{client.email}</span>
-              <span className={styles.authorId}>{client.id}</span>
+            <li className={styles.item} key={client.id}>
+              <span className={styles.index}>{index + 1}</span>
+              <span className={styles.name}>{client.username}</span>
+              <span className={styles.email}>{client.email}</span>
+              <span className={styles.id}>{client.id}</span>
               <button
                 className={styles.editBtn}
                 onClick={() => toEditPage(client.id)}
@@ -69,7 +69,7 @@ const Users = observer(() => {
             </li>
           ))
         ) : (
-          <div>There are no users</div>
+          <div>Пользователей нет</div>
         )}
       </ul>
     </section>

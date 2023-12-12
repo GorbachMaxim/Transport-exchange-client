@@ -5,6 +5,7 @@ import Button from '../../ui/button/Button';
 import preventDefaultSubmit from '../../../core/utils/preventDefaultSubmit';
 import { AuthData } from '../../../core/types/user';
 import Form from '../../form/Form';
+import userStore from '../../../store/userStore';
 
 interface LoginFormProps {
   onSubmit: (user: AuthData) => void;
@@ -30,7 +31,7 @@ const LoginForm = (props: LoginFormProps) => {
         onChange={setUsername}
         type="text"
         className={styles.input}
-        placeholder={'Username'}
+        placeholder={'Имя пользователя'}
       />
       {/*<Input*/}
       {/*  onChange={setEmail}*/}
@@ -42,10 +43,10 @@ const LoginForm = (props: LoginFormProps) => {
         onChange={setPassword}
         type="password"
         className={styles.input}
-        placeholder={'Password'}
+        placeholder={'Пароль'}
       />
       <Button type="primary" onClick={onSubmit}>
-        Sign In
+        Войти
       </Button>
     </Form>
   );

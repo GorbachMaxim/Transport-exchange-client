@@ -49,7 +49,7 @@ const UserEditForm = (props: UserEditFormProps) => {
         placeholder={'Confirm password'}
       />
       <Button type="primary" onClick={onSubmit}>
-        Update
+        Изменить
       </Button>
     </Form>
   );

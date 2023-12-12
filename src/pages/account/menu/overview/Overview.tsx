@@ -14,7 +14,7 @@ const Overview = observer(() => {
 
   return (
     <section className={styles.overview}>
-      <h2 className={`accountPageTitle`}>Overview</h2>
+      <h2 className={`accountPageTitle`}>Общая информация</h2>
       <div className={styles.username}>
         <span>Username: </span>
         <span>{userStore.getUser()?.username}</span>
@@ -25,15 +25,13 @@ const Overview = observer(() => {
       </div>
       {userStore.getUser()?.verified ? (
         <div className={styles.verification}>
-          <span className={styles.verified}>Your account is verified</span>
+          <span className={styles.verified}>Ваш аккаунт подтвержден</span>
         </div>
       ) : (
         <div className={styles.verification}>
-          <span className={styles.notVerified}>
-            Your account is not verified
-          </span>
+          <span className={styles.notVerified}>Ваш аккаунт не подтвержден</span>
           <Button onClick={verifyAccount} type={'primary'}>
-            Verify
+            Подтвердить
           </Button>
         </div>
       )}
